@@ -1,0 +1,16 @@
+✔ first success needs three deliberate commands (1.605808ms)
+✔ replay has identical states and traces (1.010021ms)
+✔ boundary refuses movement (0.166821ms)
+✔ emergency stop latches across further step calls (0.304439ms)
+✔ empty until loop is bounded (0.386291ms)
+✔ syntax rejects unmatched groups and unknown commands (0.328575ms)
+✔ counted loop moves three times (0.20609ms)
+✔ sensor failure prevents third movement (0.164217ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 108.462356

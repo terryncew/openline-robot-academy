@@ -1,0 +1,37 @@
+✔ first success needs three deliberate commands (1.565661ms)
+✔ replay has identical states and traces (0.962976ms)
+✔ boundary refuses movement (0.235664ms)
+✔ emergency stop latches across further step calls (0.22618ms)
+✔ empty until loop is bounded (0.31964ms)
+✔ syntax rejects unmatched groups and unknown commands (0.406831ms)
+✔ counted loop moves three times (0.24007ms)
+✔ sensor failure prevents third movement (0.262804ms)
+✔ delivery route 0 has a reproducible solution (1.17231ms)
+✔ garden route 0 has a reproducible solution (3.784533ms)
+✔ scout route 0 has a reproducible solution (0.37988ms)
+✔ scout route 1 has a reproducible solution (0.402915ms)
+✔ scout route 2 has a reproducible solution (0.898939ms)
+✔ safety route 0 has a reproducible solution (0.256966ms)
+✔ no movement into planters (0.111698ms)
+✔ unexpected crate stops exactly before tile three (0.278227ms)
+✔ unknown sensor cannot be treated as an else branch (0.244457ms)
+✔ stop block prevents later commands (0.303155ms)
+✔ empty and unfinished programs give feedback (0.104998ms)
+✔ nested repeats have independent counters (0.123526ms)
+✔ false if without else skips commands (0.114732ms)
+✔ true if skips else (0.097657ms)
+✔ program and repeat limits reject hostile input (0.257697ms)
+✔ code round-trips every mission (0.793311ms)
+✔ parser rejects arbitrary JavaScript without evaluation (0.240622ms)
+✔ code accepts comments and whitespace (0.088953ms)
+✔ local progress allowlists fields (0.187091ms)
+✔ bad progress and bad maps rejected (0.151918ms)
+✔ seeded 1500 hostile programs stay bounded and inside walkable tiles (16.843262ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 120.692854

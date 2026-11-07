@@ -1,0 +1,190 @@
+TAP version 13
+# Subtest: first success needs three deliberate commands
+ok 1 - first success needs three deliberate commands
+  ---
+  duration_ms: 6.090428
+  ...
+# Subtest: replay has identical states and traces
+ok 2 - replay has identical states and traces
+  ---
+  duration_ms: 5.65452
+  ...
+# Subtest: boundary refuses movement
+ok 3 - boundary refuses movement
+  ---
+  duration_ms: 1.14968
+  ...
+# Subtest: emergency stop latches across further step calls
+ok 4 - emergency stop latches across further step calls
+  ---
+  duration_ms: 1.213706
+  ...
+# Subtest: empty until loop is bounded
+ok 5 - empty until loop is bounded
+  ---
+  duration_ms: 1.716776
+  ...
+# Subtest: syntax rejects unmatched groups and unknown commands
+ok 6 - syntax rejects unmatched groups and unknown commands
+  ---
+  duration_ms: 0.992172
+  ...
+# Subtest: counted loop moves three times
+ok 7 - counted loop moves three times
+  ---
+  duration_ms: 0.536684
+  ...
+# Subtest: sensor failure prevents third movement
+ok 8 - sensor failure prevents third movement
+  ---
+  duration_ms: 1.107225
+  ...
+# Subtest: delivery route 0 has a reproducible solution
+ok 9 - delivery route 0 has a reproducible solution
+  ---
+  duration_ms: 2.29333
+  ...
+# Subtest: garden route 0 has a reproducible solution
+ok 10 - garden route 0 has a reproducible solution
+  ---
+  duration_ms: 1.361712
+  ...
+# Subtest: scout route 0 has a reproducible solution
+ok 11 - scout route 0 has a reproducible solution
+  ---
+  duration_ms: 2.938878
+  ...
+# Subtest: scout route 1 has a reproducible solution
+ok 12 - scout route 1 has a reproducible solution
+  ---
+  duration_ms: 1.123074
+  ...
+# Subtest: scout route 2 has a reproducible solution
+ok 13 - scout route 2 has a reproducible solution
+  ---
+  duration_ms: 1.078637
+  ...
+# Subtest: safety route 0 has a reproducible solution
+ok 14 - safety route 0 has a reproducible solution
+  ---
+  duration_ms: 1.255367
+  ...
+# Subtest: sandbox route 0 has a reproducible solution
+ok 15 - sandbox route 0 has a reproducible solution
+  ---
+  duration_ms: 0.549593
+  ...
+# Subtest: no movement into planters
+ok 16 - no movement into planters
+  ---
+  duration_ms: 0.356701
+  ...
+# Subtest: unexpected crate stops exactly before tile three
+ok 17 - unexpected crate stops exactly before tile three
+  ---
+  duration_ms: 0.941377
+  ...
+# Subtest: unknown sensor cannot be treated as an else branch
+ok 18 - unknown sensor cannot be treated as an else branch
+  ---
+  duration_ms: 1.04129
+  ...
+# Subtest: stop block prevents later commands
+ok 19 - stop block prevents later commands
+  ---
+  duration_ms: 0.34157
+  ...
+# Subtest: empty and unfinished programs give feedback
+ok 20 - empty and unfinished programs give feedback
+  ---
+  duration_ms: 0.885812
+  ...
+# Subtest: nested repeats have independent counters
+ok 21 - nested repeats have independent counters
+  ---
+  duration_ms: 3.732592
+  ...
+# Subtest: false if without else skips commands
+ok 22 - false if without else skips commands
+  ---
+  duration_ms: 0.325772
+  ...
+# Subtest: true if skips else
+ok 23 - true if skips else
+  ---
+  duration_ms: 0.290943
+  ...
+# Subtest: program and repeat limits reject hostile input
+ok 24 - program and repeat limits reject hostile input
+  ---
+  duration_ms: 0.719862
+  ...
+# Subtest: code round-trips every mission
+ok 25 - code round-trips every mission
+  ---
+  duration_ms: 5.442144
+  ...
+# Subtest: parser rejects arbitrary JavaScript without evaluation
+ok 26 - parser rejects arbitrary JavaScript without evaluation
+  ---
+  duration_ms: 2.211164
+  ...
+# Subtest: code accepts comments and whitespace
+ok 27 - code accepts comments and whitespace
+  ---
+  duration_ms: 0.56545
+  ...
+# Subtest: local progress allowlists fields
+ok 28 - local progress allowlists fields
+  ---
+  duration_ms: 0.619597
+  ...
+# Subtest: bad progress and bad maps rejected
+ok 29 - bad progress and bad maps rejected
+  ---
+  duration_ms: 0.486938
+  ...
+# Subtest: seeded 1500 hostile programs stay bounded and inside walkable tiles
+ok 30 - seeded 1500 hostile programs stay bounded and inside walkable tiles
+  ---
+  duration_ms: 171.601827
+  ...
+# Subtest: every published solution completes every route
+ok 31 - every published solution completes every route
+  ---
+  duration_ms: 8.20618
+  ...
+# Subtest: code mode roundtrips every published solution
+ok 32 - code mode roundtrips every published solution
+  ---
+  duration_ms: 7.929916
+  ...
+# Subtest: unknown sensor and newly appearing crate fail closed
+ok 33 - unknown sensor and newly appearing crate fail closed
+  ---
+  duration_ms: 2.014189
+  ...
+# Subtest: emergency stop latches until a new state is explicitly created
+ok 34 - emergency stop latches until a new state is explicitly created
+  ---
+  duration_ms: 0.536351
+  ...
+# Subtest: invalid maps reject out-of-bounds walls
+ok 35 - invalid maps reject out-of-bounds walls
+  ---
+  duration_ms: 4.181244
+  ...
+# Subtest: standalone distribution contains embedded application and no external script or CSS dependency
+ok 36 - standalone distribution contains embedded application and no external script or CSS dependency
+  ---
+  duration_ms: 28.477701
+  ...
+1..36
+# tests 36
+# suites 0
+# pass 36
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1656.91476

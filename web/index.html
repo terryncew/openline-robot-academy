@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#173c34"><meta name="description" content="Meet Pip. Build a program, explore a tiny world, and learn to think like a robot maker. Free and offline.">
+<title>OpenLine Robot Academy</title>
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+<script defer src="engine.js"></script><script defer src="missions.js"></script><script defer src="app.js"></script>
+</head>
+<body>
+<a class="skip" href="#workspace">Skip to mission</a>
+<header class="masthead">
+  <a class="brand" href="#workspace"><span class="brand-mark" aria-hidden="true">ol<span>•</span></span><span>OpenLine<small>ROBOT ACADEMY</small></span></a>
+  <div class="header-actions"><span class="privacy-pill">No account. Just curiosity.</span><button id="guide-open" class="quiet">Educator guide ↗</button><button id="settings-open" class="quiet" aria-label="Open progress and offline options">Save &amp; offline</button></div>
+</header>
+<main>
+  <section class="intro" aria-labelledby="headline">
+    <div><div class="eyebrow">A LITTLE ROBOT. A WORLD OF POSSIBILITIES.</div><h1 id="headline">Ready, set, <span>robot.</span></h1><p>Meet Pip. You make the plan. Pip makes the moves.</p></div>
+    <div class="intro-note"><span class="little-spark" aria-hidden="true">✳</span><span>Big ideas start<br>with small steps.</span></div>
+  </section>
+  <nav id="missions" aria-label="Choose a mission"></nav>
+  <section id="workspace" class="workspace" aria-labelledby="mission-title">
+    <section class="world-panel">
+      <div class="panel-top"><div><div class="eyebrow" id="mission-tag">MISSION 01</div><h2 id="mission-title">First delivery</h2></div><span id="mission-time" class="time-chip">3 min</span></div>
+      <p id="brief" class="brief"></p>
+      <div class="world-toolbar">
+        <span class="world-name"><span aria-hidden="true">◈</span> PIP’S COMMUNITY GARDEN</span>
+        <label id="variant-label" hidden>Test route <select id="variant"><option value="0">A (Short)</option><option value="1">B (Medium)</option><option value="2">C (Long)</option></select></label>
+      </div>
+      <div id="sandbox-toolbar" class="sandbox-toolbar" hidden role="group" aria-label="Sandbox map builder">
+        <div class="sandbox-head"><span class="sandbox-label">Map builder: tap a tile to edit</span><label class="preset-label">Preset <select id="sandbox-preset"><option value="0">Zigzag course</option><option value="1">Left-turn spiral</option><option value="2">Open garden (blank)</option></select></label></div>
+        <div class="sandbox-tools">
+          <button id="tool-wall" class="sandbox-tool" aria-pressed="true">🌿 Toggle planter</button>
+          <button id="tool-pip" class="sandbox-tool" aria-pressed="false">🤖 Move Pip</button>
+          <button id="tool-pad" class="sandbox-tool" aria-pressed="false">⚡ Move pad</button>
+          <button id="rotate-pip" class="sandbox-tool" title="Rotate Pip's starting direction">↻ Rotate Pip</button>
+          <button id="reset-map" class="sandbox-tool" title="Restore selected preset map">↺ Reset map</button>
+        </div>
+      </div>
+      <div class="board-surround"><div id="board" class="board" role="img" aria-label="Mission map"></div><div class="compass" aria-hidden="true">N ↑</div></div>
+      <div class="map-key"><span><i class="key-pip"></i> Pip</span><span><i class="key-pad">⚡</i> Charging pad</span><span><i class="key-wall"></i> Planter</span><button id="map-open" class="text-button">Text map</button></div>
+      <div class="sensor-strip"><span><small>POSITION</small><strong id="position">Row 4, column 1</strong></span><span><small>FACING</small><strong id="direction">East →</strong></span><span><small>SENSOR AHEAD</small><strong id="sensor">Clear</strong></span></div>
+      <div id="status" class="status" role="status" aria-live="polite" aria-atomic="true">Ready when you are.</div>
+      <div id="safety-panel" class="lab-panel" hidden>
+        <label>Try an unexpected condition <select id="scenario"><option value="normal">1. Normal route (Deliver)</option><option value="new-crate">2. A crate appears mid-route</option><option value="sensor-fault">3. Sensor fails after two moves</option></select></label>
+        <p id="safety-tip">Complete all 4 safety drills below! For Drill 4, press Run and hit Emergency stop while Pip is moving.</p>
+        <div id="stop-practice" class="drill-badges" aria-label="Safety drill checklist"></div>
+      </div>
+    </section>
+    <section class="code-panel" aria-labelledby="program-title">
+      <div class="panel-top"><div><div class="eyebrow">YOU’RE IN CHARGE</div><h2 id="program-title">Your program</h2></div><span id="block-count" class="time-chip">0 / 60</span></div>
+      <div class="editor-tabs" role="group" aria-label="Programming view"><button id="blocks-tab" aria-pressed="true">Blocks</button><button id="code-tab" aria-pressed="false">Code lab <span>↗</span></button></div>
+      <div id="blocks-view">
+        <p class="editor-help">Tap a command to add it. Pip reads from top to bottom.</p>
+        <div id="palette" class="palette" aria-label="Add a command"></div>
+        <div class="program-toolbar"><span>START <span aria-hidden="true">↓</span></span><div><button id="undo" class="text-button">Undo</button><button id="clear" class="text-button">Clear</button></div></div>
+        <div id="program" class="program" aria-label="Program blocks"></div>
+        <div id="code-peek" class="code-peek" aria-label="Live code preview">
+          <div class="code-peek-head"><span>LIVE CODE PREVIEW</span><div class="peek-switches"><button id="peek-js" class="peek-btn" aria-pressed="true">JavaScript</button><button id="peek-py" class="peek-btn" aria-pressed="false">Python</button></div></div>
+          <pre id="peek-source" class="peek-pre"></pre>
+        </div>
+      </div>
+      <div id="code-view" hidden>
+        <label for="source">Robot JavaScript</label>
+        <p class="editor-help">Edit the same program using code. This safe robot language supports the commands below.</p>
+        <textarea id="source" spellcheck="false" autocomplete="off" autocapitalize="off" aria-describedby="code-help"></textarea>
+        <button id="apply-code" class="primary">Use this code</button>
+        <p id="code-help" class="small">move(); left(); right(); wait(); stop();<br>repeat(3) { … } · if (clearAhead()) { … } else { … } · while (!atGoal()) { … }</p>
+        <div class="python-compare">
+          <strong>Python equivalent (read-only concept translation)</strong>
+          <p class="small">See how the exact same logic looks in Python. This app does not execute Python.</p>
+          <pre id="python"></pre>
+        </div>
+      </div>
+      <p id="editor-status" class="editor-status" role="status" aria-live="polite"></p>
+      <div class="help-row"><button id="hint" class="quiet">☼ A little hint</button><button id="starter" class="quiet">Reset program</button></div>
+      <p id="hint-text" class="hint" hidden></p>
+      <details id="trace-details" class="trace-details"><summary>Step detective <span id="tick-count">0 steps</span></summary><p class="small">Each row shows what actually happened. Use Step to watch one decision at a time.</p><ol id="trace" class="trace"></ol><button id="trace-export" class="text-button">Download this trace</button></details>
+    </section>
+  </section>
+  <div class="transport" role="group" aria-label="Robot controls"><div class="transport-inner"><div class="run-controls"><button id="run" class="run"><span aria-hidden="true">▶</span> Run</button><button id="step">Step <span aria-hidden="true">▸</span></button><button id="reset">Reset <span aria-hidden="true">↺</span></button><label class="speed-label">Speed <select id="speed"><option value="600">Steady</option><option value="1100">Slow</option><option value="200">Quick</option><option value="40">Turbo</option></select></label></div><button id="estop" class="estop"><span aria-hidden="true">■</span> Emergency stop <kbd>Esc</kbd></button></div></div>
+  <section id="reflection" class="reflection" hidden aria-labelledby="reflection-title"><div><div class="eyebrow">MADE IT. NOW MAKE IT MAKE SENSE.</div><h2 id="reflection-title">You got Pip there!</h2><p id="concept"></p></div><div><h3 id="question"></h3><div id="answers"></div><p id="answer-feedback" role="status"></p><button id="next" class="primary">Next mission →</button></div></section>
+  <section class="below"><div><span class="feature-icon" aria-hidden="true">↻</span><h3>Try. Notice. Change.</h3><p>A bug is a clue. Change one thing, then test your idea.</p></div><div><span class="feature-icon" aria-hidden="true">◉</span><h3>Make a prediction.</h3><p>Before you press Run, point to where Pip will go.</p></div><div><span class="feature-icon" aria-hidden="true">✋</span><h3>You hold the stop button.</h3><p>Robots need boundaries. Stop, reset, and try again.</p></div></section>
+  <footer><span>OPENLINE ROBOT ACADEMY <span class="footer-dot">•</span> Built for curious minds.</span><span>Free · No tracking · Works offline</span><p class="small">A learning simulation. Pip doesn’t control physical robots.</p></footer>
+</main>
+<dialog id="guide-dialog" aria-labelledby="guide-title">
+  <button class="dialog-close" data-close aria-label="Close educator guide">×</button>
+  <div class="eyebrow">45 MINUTES · AGES 8–17 · NO HARDWARE · PRINTABLE</div>
+  <h2 id="guide-title">Educator Guide &amp; 45-Minute Workshop Plan</h2>
+  <p>Students predict, program, observe, and revise. Success means explaining a choice, not finishing fastest. <button id="print-guide" class="quiet" style="margin-left:8px;padding:4px 10px;min-height:32px">🖨️ Print guide</button></p>
+  <ol class="guide-timeline">
+    <li><b>0–5 min · First delivery (Sequences &amp; State).</b> Point right together, then open Mission 01. Ask students to tap Forward three times and press Run. Check: can they explain why Turn left changes facing without changing tiles?</li>
+    <li><b>5–15 min · Garden path (Counted Loops).</b> Build Mission 02: Repeat 4 { Forward }, tap "After End ⤵", Turn left, Repeat 3 { Forward }. Ask: what happens if Turn left is put inside the first Repeat group?</li>
+    <li><b>15–27 min · Sensor scout (Conditionals &amp; Feedback).</b> Build Until pad → If clear → Forward → Else → Turn left. Test the exact same program on routes A, B, and C. Discuss why re-checking the sensor generalizes across lengths, and what maze shape would break a left-turn-only rule.</li>
+    <li><b>27–37 min · Safety lab (Debugging, Fail-Closed &amp; E-Stop).</b> Step through the buggy starter, remove Block 01 (Turn left), and complete all 4 safety drills: Normal delivery, Crate appears, Sensor fails ("unknown"), and mid-run Emergency stop + explicit Reset.</li>
+    <li><b>37–45 min · Creative sandbox &amp; Code lab (Synthesis).</b> Pairs design a custom maze in Mission 05 (Creative sandbox) and trade devices to solve each other's challenge, or edit Robot JavaScript and compare Python in Code lab.</li>
+  </ol>
+  <h3>Answer Key &amp; Misconception Coaching</h3>
+  <ul class="guide-list">
+    <li><b>01 First delivery:</b> <code>move(); move(); move();</code> · Reflection answer: <i>Right one tile, then up one tile.</i></li>
+    <li><b>02 Garden path:</b> <code>repeat(4) { move(); } left(); repeat(3) { move(); }</code> · Reflection answer: <i>A small square, ending where it started.</i></li>
+    <li><b>03 Sensor scout:</b> <code>while (!atGoal()) { if (clearAhead()) { move(); } else { left(); } }</code> · Reflection answer: <i>It checks the path again before each move.</i></li>
+    <li><b>04 Safety lab:</b> Remove initial <code>left();</code> leaving <code>repeat(5) { move(); }</code> · Reflection answer: <i>Stop and check before moving again.</i></li>
+    <li><b>05 Creative sandbox (default Zigzag):</b> <code>repeat(2) { move(); move(); left(); move(); right(); }</code> · Reflection answer: <i>Write and run a working solution on the map yourself first.</i></li>
+  </ul>
+  <h3>Shared Devices, Accessibility &amp; Troubleshooting</h3>
+  <p><b>Pair protocol (2–3 students per device):</b> Driver operates buttons; Navigator predicts each step and watches Step detective; optional Safety Observer calls Emergency stop on hazards. Swap roles every mission (or every 5 minutes).</p>
+  <p><b>Troubleshooting:</b> If blocks are added inside a loop by mistake, tap Undo or tap the <b>After End ⤵</b> button on the End row. If controls are locked in red, Emergency stop is latched—press <b>Reset</b> to release. If a browser blocks local HTML files, serve <code>web/</code> from a local server or approved HTTPS host, or use the unplugged paper grid backup.</p>
+  <p class="small">This guide is structured for a 45-minute workshop; real classroom validation with students and educators remains pending.</p>
+</dialog>
+<dialog id="settings-dialog" aria-labelledby="settings-title"><button class="dialog-close" data-close aria-label="Close save and offline options">×</button><div class="eyebrow">YOURS, ON THIS DEVICE</div><h2 id="settings-title">Pick up where you left off.</h2><p id="save-status"></p><p>Drafts and completed learning checks stay in this browser. Refresh always parks Pip. On a shared device, progress belongs to the device, not an individual student.</p><div class="dialog-buttons"><button id="export-progress" class="primary">Save progress file</button><label class="file-button">Load progress file<input id="import-progress" type="file" accept="application/json,.json"></label></div><p id="import-status" role="status"></p><h3>Take the garden offline.</h3><p id="offline-status">Checking offline availability…</p><button id="cache-offline">Prepare offline copy</button><button id="install" hidden>Install app</button><p class="small">The separate OpenLine-Robot-Academy.html download is self-contained. Open it in a browser that permits local HTML. For phones or managed Chromebooks, a verified installed copy is usually easier.</p><details><summary>Start over on a shared device</summary><p>This clears Academy drafts and progress from this browser.</p><button id="erase-progress" class="danger">Erase local progress</button></details></dialog>
+<dialog id="map-dialog" aria-labelledby="map-title"><button class="dialog-close" data-close aria-label="Close text map">×</button><h2 id="map-title">Pip’s map, in words.</h2><p id="map-description"></p><table id="text-map"><caption>Rows run top to bottom. Columns run left to right.</caption></table></dialog>
+</body></html>

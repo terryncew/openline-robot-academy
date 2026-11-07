@@ -1,0 +1,142 @@
+{
+  "browser": "155.0.8059.79",
+  "checks": 27,
+  "passed": 27,
+  "results": [
+    {
+      "name": "Clean startup without spurious storage error",
+      "passed": true,
+      "detail": "editor-status=''"
+    },
+    {
+      "name": "Live Code Preview shows JS in Mission 01",
+      "passed": true,
+      "detail": "move(); move(); move();"
+    },
+    {
+      "name": "Live Code Preview toggles to Python",
+      "passed": true,
+      "detail": "robot.move() robot.move() robot.move()"
+    },
+    {
+      "name": "Mission 01 completes via UI and opens Reflection",
+      "passed": true,
+      "detail": "Delivery complete! Your program reached the charging pad."
+    },
+    {
+      "name": "Mission 01 wrong reflection answer gives coaching",
+      "passed": true,
+      "detail": "Try tracing it one step at a time. A turn changes the direction Pip faces without leaving the tile. The next Forward moves in that new direction."
+    },
+    {
+      "name": "Mission 01 right reflection answer records check",
+      "passed": true,
+      "detail": "\u2713 A turn changes the direction Pip faces without leaving the tile. The next Forward moves in that new direction."
+    },
+    {
+      "name": "Next button advances to Mission 02",
+      "passed": true,
+      "detail": "Garden path"
+    },
+    {
+      "name": "Mission 02 completes via UI with Repeat + After End",
+      "passed": true,
+      "detail": "Delivery complete! Your program reached the charging pad."
+    },
+    {
+      "name": "Mission 03 same sensor program completes Route A",
+      "passed": true,
+      "detail": "Delivery complete! Your program reached the charging pad."
+    },
+    {
+      "name": "Mission 03 same sensor program completes Route B",
+      "passed": true,
+      "detail": "Delivery complete! Your program reached the charging pad."
+    },
+    {
+      "name": "Mission 03 same sensor program completes Route C",
+      "passed": true,
+      "detail": "Delivery complete! Your program reached the charging pad."
+    },
+    {
+      "name": "Mission 04 buggy starter gives diagnostic blocked message",
+      "passed": true,
+      "detail": "Path blocked at Block 3 by a planter at Row 2, Col 1. Pip stayed put. Turn first, or check the sensor."
+    },
+    {
+      "name": "Mission 04 Drill 1 (Normal delivery) succeeds",
+      "passed": true,
+      "detail": "Delivery complete! Your program reached the charging pad."
+    },
+    {
+      "name": "Mission 04 Drill 2 (Crate test) stops before crate",
+      "passed": true,
+      "detail": "Path blocked at Block 2 by an unexpected crate at Row 3, Col 4. Pip stayed put. Turn first, or check the sensor."
+    },
+    {
+      "name": "Mission 04 Drill 3 (Sensor fault) fails closed on unknown",
+      "passed": true,
+      "detail": "Sensor unavailable at Block 2. Pip stopped safely before moving. Reset to try again."
+    },
+    {
+      "name": "Mission 04 Drill 4 (Emergency stop via Esc) latches and unlocks Reflection",
+      "passed": true,
+      "detail": "Emergency stop. Pip stays here until you reset."
+    },
+    {
+      "name": "Explicit Reset releases Emergency stop latch",
+      "passed": true,
+      "detail": "run enabled after Reset"
+    },
+    {
+      "name": "Next button advances to Mission 05 Creative sandbox",
+      "passed": true,
+      "detail": "Creative sandbox"
+    },
+    {
+      "name": "Sandbox Map Builder toggles planter on tile click",
+      "passed": true,
+      "detail": "Added planter at Row 1, Col 1."
+    },
+    {
+      "name": "Code Lab rejects invalid syntax with clear message",
+      "passed": true,
+      "detail": "Check your syntax near \u201cinvalidCommand();\u201d. Use the robot commands in the example."
+    },
+    {
+      "name": "Mission 05 Creative sandbox solved via Code Lab",
+      "passed": true,
+      "detail": "Delivery complete! Your program reached the charging pad."
+    },
+    {
+      "name": "Educator guide modal opens and shows 45-min plan & answer key",
+      "passed": true,
+      "detail": "open=true"
+    },
+    {
+      "name": "Text map modal renders accessible row/col table",
+      "passed": true,
+      "detail": "rows=6"
+    },
+    {
+      "name": "Zero horizontal page overflow at 1280x1000px",
+      "passed": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "Zero horizontal page overflow at 768x1024px",
+      "passed": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "Zero horizontal page overflow at 390x844px",
+      "passed": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "Zero horizontal page overflow at 320x680px",
+      "passed": true,
+      "detail": "overflow=0px"
+    }
+  ]
+}

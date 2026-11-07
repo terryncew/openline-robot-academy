@@ -1,0 +1,1 @@
+{"name":"openline-robot-academy","version":"0.1.0-rc1","private":true,"description":"Offline robotics learning, without accounts or hardware","license":"MIT","scripts":{"test":"node --test tests/engine.test.js tests/release.test.js tests/adversarial.test.js","build":"python3 scripts/build.py"}}

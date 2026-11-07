@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#173c34"><meta name="description" content="Meet Pip. Build a program, explore a tiny world, and learn to think like a robot maker. Free and offline.">
+<title>OpenLine Robot Academy</title>
+
+<style>
+/* Original visual design; system fonts only. */
+:root{--ink:#193a32;--muted:#465e56;--green:#215b47;--mint:#e4f1e7;--cream:#f7f7ef;--line:#cdd8cb;--orange:#f4ac6c;--blue:#e3eef9;--red:#a52e31;--paper:#fffef9;--shadow:0 5px 0 #173c340b;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--cream);font-synthesis:none}
+*{box-sizing:border-box}body{margin:0}button,input,select,textarea{font:inherit}button,a,input,select,textarea,summary{touch-action:manipulation}button,select,.file-button{cursor:pointer}button{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:10px 15px;min-height:44px;color:var(--ink);font-weight:650}button:hover{background:#edf3e9;border-color:#7e9d89}button:disabled{cursor:default;opacity:.48}button:focus-visible,a:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible,input:focus-visible,.file-button:focus-within{outline:3px solid #285ca8;outline-offset:3px}button[hidden],[hidden]{display:none!important}a{color:var(--green)}p{line-height:1.6}h1,h2,h3,p{margin-top:0}h2{font-size:24px;letter-spacing:-.7px;margin-bottom:0}h3{font-size:17px;line-height:1.4}small,.small{font-size:12px;line-height:1.65;color:var(--muted)}.eyebrow{font-size:10px;font-weight:800;letter-spacing:1.7px;line-height:1.5}.skip{position:fixed;left:16px;top:-80px;background:#fff;padding:15px;z-index:50}.skip:focus{top:12px}.masthead{height:76px;border-bottom:1px solid var(--line);max-width:1440px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:0 4%}.brand{display:flex;gap:12px;align-items:center;text-decoration:none;font-size:21px;font-weight:750;letter-spacing:-.5px}.brand small{display:block;font-size:8px;letter-spacing:2px;color:var(--ink);margin-top:3px}.brand-mark{border:2px solid var(--ink);border-radius:12px;width:42px;height:42px;display:flex;align-items:center;justify-content:center;font-size:24px;letter-spacing:-3px;padding-right:4px}.brand-mark span{color:#a34c28;align-self:flex-start;font-size:14px;line-height:18px;letter-spacing:0}.header-actions{display:flex;gap:10px;align-items:center}.privacy-pill{font-size:11px;font-weight:650;color:var(--muted);margin-right:8px}.quiet{background:transparent;font-size:12px}.text-button{border:0;background:transparent;padding:4px 8px;font-size:12px;min-height:44px;text-decoration:underline;text-underline-offset:3px}main{max-width:1240px;margin:auto;padding:0 32px 28px}.intro{display:flex;align-items:center;justify-content:space-between;padding:18px 0 16px}.intro .eyebrow{color:var(--muted);margin-bottom:6px}h1{font-size:clamp(34px,4vw,52px);font-weight:750;letter-spacing:-2.2px;line-height:1.08;margin-bottom:8px}h1 span{color:var(--green);font-family:Georgia,serif;font-style:italic;font-weight:400}.intro p{font-size:15px;color:var(--muted);margin-bottom:0}.intro-note{display:flex;gap:14px;align-items:center;font-size:13px;line-height:1.5;transform:rotate(-4deg);margin-right:18px}.little-spark{font-size:52px;color:#b15e36;line-height:1}#missions{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-bottom:20px}.mission{display:flex;gap:11px;align-items:center;text-align:left;border-radius:12px;padding:12px 14px;position:relative;background:var(--paper)}.mission[aria-current=step]{background:var(--green);color:white;border-color:var(--green);box-shadow:0 3px 0 #16382b}.mission-num{height:30px;width:30px;border:1px solid currentColor;border-radius:50%;font-size:11px;display:grid;place-items:center;flex-shrink:0;opacity:.9}.mission strong{font-size:13px;display:block;line-height:1.25}.mission small{color:inherit;opacity:.85;font-size:9px;letter-spacing:.8px}.workspace{display:grid;grid-template-columns:1.12fr 1fr;gap:20px;align-items:start}.world-panel,.code-panel{background:var(--paper);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}.panel-top{display:flex;align-items:center;justify-content:space-between;padding:20px 24px 0;gap:8px}.panel-top .eyebrow{color:var(--muted);margin-bottom:3px}.time-chip{font-size:11px;border:1px solid var(--line);padding:5px 10px;border-radius:30px;white-space:nowrap;color:var(--muted)}.brief{font-size:14px;padding:10px 24px 0;margin:0;min-height:48px}.world-toolbar{display:flex;align-items:center;justify-content:space-between;padding:12px 24px 10px;gap:8px;min-height:44px}.world-name{font-size:9px;letter-spacing:1.2px;font-weight:800;color:var(--muted)}.world-name span{font-size:14px;margin-right:5px}select{border:1px solid var(--line);background:var(--paper);border-radius:6px;min-height:36px;padding:5px 8px;color:var(--ink)}#variant-label{font-size:12px;font-weight:650}.sandbox-toolbar{margin:0 24px 10px;padding:10px 12px;background:#eef4ea;border:1px solid #c5d5be;border-radius:11px}.sandbox-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:7px;flex-wrap:wrap}.sandbox-label{font-size:11px;font-weight:750;color:var(--ink)}.preset-label{font-size:11px;font-weight:650}.preset-label select{min-height:30px;padding:2px 6px;font-size:11px;margin-left:4px}.sandbox-tools{display:flex;flex-wrap:wrap;gap:6px}.sandbox-tool{padding:6px 10px;min-height:36px;font-size:11px;border-radius:8px;background:var(--paper)}.sandbox-tool[aria-pressed=true]{background:var(--green);color:#fff;border-color:var(--green)}.board-surround{background:#e5eddf;margin:0 24px;padding:14px 20px 18px;border-radius:12px;position:relative;isolation:isolate}.board{display:grid;gap:4px;aspect-ratio:1;max-width:420px;margin:auto;grid-template-columns:repeat(var(--cols),minmax(0,1fr));border:1px solid #c6d6c1;background:#c6d6c1;padding:4px;border-radius:10px;box-shadow:0 6px 0 #bacbb2}.cell{position:relative;border-radius:5px;background:#f0f4e7;display:grid;place-items:center;min-width:0;min-height:0;padding:0;border:0}.board.sandbox-editable .cell{cursor:pointer}.board.sandbox-editable .cell:hover{outline:2px solid var(--green);z-index:1}.cell.visited{background:#d4e7c3}.cell.wall{background:#b4c8a5;box-shadow:inset 0 -4px 0 #94ae86}.plant{width:57%;height:57%;position:relative;transform:rotate(-15deg);pointer-events:none}.plant:before,.plant:after{content:'';position:absolute;background:#688957;width:54%;height:70%;border-radius:100% 0 100% 0;bottom:10%;left:3%;transform:rotate(-15deg)}.plant:after{left:40%;transform:rotate(85deg);background:#507647}.cell.goal{background:#f4c88b;box-shadow:inset 0 0 0 3px #bc793a}.pad{font-size:clamp(18px,2.8vw,32px);color:#67411b;font-weight:850;pointer-events:none}.cell.goal:after{content:'PAD';position:absolute;bottom:2px;font-size:7px;font-weight:850;letter-spacing:1px;color:#593c25;pointer-events:none}.pip{position:relative;width:74%;height:72%;z-index:2;filter:drop-shadow(0 3px 0 #163d3435);display:grid;place-items:center;pointer-events:none}.pip-body{width:87%;height:78%;border:2px solid #173c34;background:#f5c885;border-radius:30%;position:relative;display:grid;place-items:center}.pip-body:before{content:'';position:absolute;top:-20%;height:20%;width:3px;background:var(--ink)}.pip-body:after{content:'';position:absolute;top:-27%;width:6px;height:6px;background:#bf5e36;border-radius:50%}.face{width:76%;height:58%;background:#204d42;border-radius:7px;display:flex;align-items:center;justify-content:center;gap:20%}.eye{width:12%;height:35%;background:#fff6d8;border-radius:4px}.facing{position:absolute;font-size:14px;line-height:1;font-weight:900;color:#163d34;background:#fff9e8;border-radius:50%;width:19px;height:19px;display:grid;place-items:center;bottom:-7px;right:-6px;border:1px solid #668679}.compass{position:absolute;bottom:5px;right:10px;font-size:9px;font-weight:800;color:var(--muted)}.map-key{display:flex;gap:14px;align-items:center;margin:4px 24px;font-size:11px;flex-wrap:wrap}.map-key>span{display:flex;align-items:center;gap:5px}.map-key i{display:inline-grid;width:12px;height:12px;border-radius:3px;font-style:normal}.key-pip{background:#efbd78;border:1px solid #173c34}.key-pad{background:#f4c88b;color:#5a3f1c;font-size:9px}.key-wall{background:#78956c}.map-key button{margin-left:auto;font-size:11px}.sensor-strip{display:flex;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 24px;gap:14px;justify-content:space-between}.sensor-strip small{display:block;font-size:8px;letter-spacing:1px;font-weight:750}.sensor-strip strong{font-size:11px;font-weight:650;line-height:1.7}.status{padding:12px 24px;min-height:52px;font-size:13px;font-weight:600;background:#f0f5eb;border-left:4px solid var(--green)}.status[data-kind=blocked],.status[data-kind=budget],.status[data-kind=sensor-fault],.status[data-kind=estop]{background:#fff0e3;border-left-color:var(--red)}.status[data-kind=success]{background:#d9eddf}.editor-tabs{display:flex;margin:14px 24px 0;padding:4px;background:#edf0e7;border-radius:10px}.editor-tabs button{border:0;border-radius:7px;width:50%;background:transparent;font-size:12px;min-height:38px}.editor-tabs button[aria-pressed=true]{background:var(--paper);box-shadow:0 2px 5px #1a3d3514}.editor-tabs span{margin-left:6px}.editor-help{font-size:12px;color:var(--muted);margin:12px 24px}.palette{display:flex;flex-wrap:wrap;gap:7px;padding:0 24px}.command{padding:9px 12px;font-size:12px;background:var(--blue);border-color:#b6cce0;min-height:44px;flex:1 1 auto}.command .symbol{margin-right:7px;font-size:16px}.command.group{background:#eee7f7;border-color:#c9b9dc}.command.sensor{background:#fff0d5;border-color:#dfc9a2}.command.stop{background:#ffe8e2;border-color:#d9b2a6}.program-toolbar{display:flex;align-items:center;justify-content:space-between;margin:14px 24px 0;border-top:1px solid var(--line);padding-top:4px}.program-toolbar>span{font-size:9px;letter-spacing:1px;font-weight:800}.program{margin:0 24px 10px;min-height:145px;max-height:340px;overflow:auto;padding:0 3px 8px}.empty{border:2px dashed #ccd7c7;border-radius:12px;text-align:center;padding:22px 14px;color:var(--muted);font-size:13px;background:#fafbf5}.empty span{font-size:24px;display:block;margin-bottom:6px;color:var(--green)}.block-row{display:flex;gap:3px;align-items:center;margin:5px 0 5px calc(var(--depth,0)*12px);padding:3px;background:#e9f0f8;border:1px solid #b6cce0;border-radius:9px;min-height:46px}.block-row.group{background:#f0eaf8;border-color:#c9b9dc}.block-row.sensor{background:#fff1da;border-color:#dfc9a2}.block-row.active{outline:3px solid #1c6b50;outline-offset:1px;background:#d4e9cb}.block-label{flex:1;min-width:0;text-align:left;border:0;background:transparent;display:flex;align-items:center;gap:8px;font-size:12px;padding:5px}.block-index{font-size:9px;color:var(--muted);min-width:14px}.after-badge{margin-left:auto;font-size:10px;font-weight:750;background:#ffffffc7;border:1px solid #b8abcf;border-radius:6px;padding:2px 6px;color:#3d2b56;white-space:nowrap}.block-row .row-control{border:0;background:transparent;padding:0;width:36px;min-height:44px;flex-shrink:0;font-size:14px}.block-row input{width:48px;min-height:34px;border:1px solid #9e8ab8;border-radius:5px;padding:4px;background:white;color:var(--ink);font-size:12px}.insertion{font-size:9px;color:#215b47;padding:3px 6px;font-weight:800;letter-spacing:.5px;border-top:1.5px dashed #699b7c;margin-top:4px;background:#edf6ee;border-radius:4px}.code-peek{margin:6px 24px 10px;border:1px solid var(--line);border-radius:10px;background:#f4f6ee;overflow:hidden}.code-peek-head{display:flex;align-items:center;justify-content:space-between;padding:6px 10px;border-bottom:1px solid var(--line);font-size:9px;font-weight:800;letter-spacing:1px;color:var(--muted)}.peek-switches{display:flex;gap:4px}.peek-btn{min-height:26px;padding:2px 8px;font-size:10px;border-radius:6px;background:transparent}.peek-btn[aria-pressed=true]{background:var(--green);color:#fff;border-color:var(--green)}.peek-pre{margin:0;padding:8px 12px;font:11.5px/1.55 ui-monospace,monospace;color:var(--ink);max-height:110px;overflow:auto}.editor-status{font-size:12px;color:#9a302c;padding:0 24px;min-height:18px;margin-bottom:4px;font-weight:600}.help-row{display:flex;justify-content:space-between;margin:4px 24px 14px;gap:8px}.hint{font-size:13px;padding:12px;margin:0 24px 14px;background:#fff1d9;border-radius:8px;border-left:3px solid #d18a2b}.trace-details{border-top:1px solid var(--line);padding:0 24px 10px}summary{padding:12px 0;cursor:pointer;min-height:44px;font-size:13px;font-weight:650}summary span{float:right;font-size:10px;color:var(--muted)}.trace{font-size:12px;line-height:1.5;max-height:200px;overflow:auto;padding-left:22px}.trace li{padding:7px 3px;border-bottom:1px solid var(--line)}.trace li small{display:block;font-size:10px}.lab-panel{padding:14px 24px;background:#fff6e9;font-size:13px;border-top:1px solid #ecd6b6}.lab-panel label{display:flex;gap:8px;flex-wrap:wrap;font-weight:650;align-items:center}.lab-panel p{margin:8px 0 6px;font-size:12px}.drill-badges{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}.drill-badge{min-height:36px;padding:6px 10px;font-size:11px;text-align:left;background:#fffdf7;border:1px solid #d8c3a5;border-radius:8px}.drill-badge.done{background:#d9eddf;border-color:#6ca37d;color:#15422e}#code-view{margin:14px 24px}#code-view .editor-help{margin:8px 0}#code-view label{font-size:12px;font-weight:750}textarea{width:100%;min-height:210px;border:1px solid var(--line);background:#f5f7ef;border-radius:10px;line-height:1.65;font:13px/1.65 ui-monospace,monospace;color:var(--ink);resize:vertical;padding:12px;margin:8px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;line-height:1.6}.python-compare{margin-top:14px;padding:12px;background:#f4f6ee;border:1px solid var(--line);border-radius:10px}.python-compare strong{font-size:12px;display:block;margin-bottom:2px}.python-compare p{margin:0 0 6px}.python-compare pre{margin:0;padding:8px;background:#fffef9;border-radius:6px;border:1px solid var(--line)}.primary,.run{background:var(--green);color:#fff;border-color:var(--green)}.primary:hover,.run:hover{background:#194d3b;color:white}.reflection{margin-top:20px;padding:24px;background:#e4efdd;border:1px solid #b7ceb1;border-radius:16px;display:grid;grid-template-columns:1fr 1fr;gap:26px}.reflection h2{margin:6px 0 10px}.reflection p{font-size:13px}.reflection h3{margin-bottom:10px}#answers{display:grid;gap:6px}#answers button{text-align:left;font-size:12px}#answer-feedback{margin:10px 0;font-weight:600}.below{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin:34px 0 30px}.below>div{position:relative;padding-left:40px}.feature-icon{position:absolute;left:0;top:0;width:28px;height:28px;border-radius:8px;border:1px solid #a6baa4;display:grid;place-items:center;font-size:17px}.below h3{font-size:13px;margin:2px 0 6px}.below p{font-size:12px;color:var(--muted);margin:0}footer{border-top:1px solid var(--line);padding-top:18px;font-size:10px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;letter-spacing:.4px}footer p{width:100%;margin:0}.footer-dot{margin:0 8px}.transport{margin-top:16px;background:var(--paper);border:2px solid #9ab4a2;border-radius:16px;padding:12px 22px;box-shadow:var(--shadow)}.transport-inner{max-width:1168px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:14px}.run-controls{display:flex;gap:8px;align-items:center}.run-controls button{min-width:86px;font-size:13px}.run{min-width:116px!important}.run span{margin-right:6px}.speed-label{font-size:11px;margin-left:10px}.speed-label select{margin-left:5px}.estop{background:#a52e31;color:#fff;border-color:#a52e31;font-size:12px;min-height:44px}.estop:hover{background:#882023;color:#fff;border-color:#882023}.estop span{margin-right:7px}.estop kbd{font-size:10px;border:1px solid #da9294;border-radius:3px;padding:2px 4px;margin-left:8px}dialog{border:1px solid var(--line);border-radius:20px;background:var(--paper);color:var(--ink);max-width:680px;width:calc(100% - 28px);max-height:86dvh;padding:30px;box-shadow:0 15px 90px #142f3855}dialog::backdrop{background:#162d2870;backdrop-filter:blur(4px)}dialog h2{margin:8px 0 14px}dialog p,dialog li{font-size:13.5px;line-height:1.65}dialog h3{margin-top:20px;margin-bottom:8px}.dialog-close{float:right;font-size:24px;width:44px;height:44px;padding:0;margin:-14px -14px 5px 10px}.guide-timeline,.guide-list{padding-left:20px}.guide-timeline li,.guide-list li{margin:10px 0}.guide-timeline b{display:inline}.dialog-buttons{display:flex;gap:10px;flex-wrap:wrap}.file-button{border:1px solid var(--line);padding:10px 15px;border-radius:10px;font-weight:650;font-size:14px;position:relative;overflow:hidden}.file-button input{position:absolute;inset:0;opacity:0;width:100%;cursor:pointer}.danger{color:var(--red);border-color:var(--red)}#text-map{border-collapse:collapse;font-size:12px;width:100%;text-align:center}#text-map td,#text-map th{border:1px solid var(--line);padding:8px}#text-map caption{font-size:12px;padding:10px 0;text-align:left}
+@media(max-width:1024px){#missions{grid-template-columns:repeat(3,1fr)}.privacy-pill{display:none}.workspace{grid-template-columns:1fr 1fr;gap:14px}main{padding:0 18px 24px}.panel-top{padding:16px 16px 0}.brief{padding:8px 16px 0}.board-surround{margin:0 16px;padding:14px 14px 18px}.palette{padding:0 16px}.program{margin-left:16px;margin-right:16px}.code-peek{margin-left:16px;margin-right:16px}.block-row .row-control{width:32px}.sensor-strip{padding:10px 16px;gap:8px}.mission{padding:10px 12px;gap:8px}.mission strong{font-size:12px}.mission small{font-size:8px}.intro-note{margin-right:0}.world-toolbar{padding-left:16px;padding-right:16px}.sandbox-toolbar{margin-left:16px;margin-right:16px}.map-key{margin-left:16px;margin-right:16px;gap:10px}}
+@media(max-width:680px){#missions::-webkit-scrollbar{display:none}.masthead{height:56px;padding:0 12px}.brand{font-size:15px;gap:7px}.brand-mark{width:32px;height:32px;font-size:18px;border-radius:8px}.brand small{font-size:6.5px;letter-spacing:1.4px}.header-actions{gap:4px}.header-actions .quiet{font-size:10.5px;padding:6px 8px;min-height:36px}.intro{padding:10px 0 8px}.intro .eyebrow{display:none}h1{letter-spacing:-1.2px;font-size:24px;margin-bottom:2px}.intro p{font-size:12px}.intro-note{display:none}main{padding:0 10px 20px}#missions{display:flex;overflow-x:auto;gap:6px;margin-bottom:10px;padding-bottom:4px;scrollbar-width:none;-ms-overflow-style:none;-webkit-mask-image:linear-gradient(to right,#000 84%,transparent 99%);mask-image:linear-gradient(to right,#000 84%,transparent 99%)}.mission{padding:7px 10px;min-height:44px;flex:0 0 auto;border-radius:10px;gap:7px}.mission strong{font-size:11.5px}.mission small{font-size:7.5px}.mission-num{height:24px;width:24px;font-size:10px}.workspace{grid-template-columns:1fr;gap:12px}.panel-top{padding:12px 14px 0}.panel-top h2{font-size:19px}.brief{padding:6px 14px 0;min-height:0;font-size:12.5px;line-height:1.45}.world-toolbar{padding:8px 14px 6px;min-height:34px}.sandbox-toolbar{margin:0 14px 8px;padding:8px 10px}.board-surround{margin:0 14px;padding:10px 12px 16px}.board{max-width:250px}.map-key{margin:2px 14px;font-size:10px}.status{padding:9px 14px;font-size:12px;min-height:42px}.sensor-strip{padding:8px 14px}.sensor-strip strong{font-size:11px}.palette{padding:0 14px}.program{margin:0 14px 10px;max-height:280px}.code-peek{margin:4px 14px 10px}.block-row .row-control{width:34px}.block-label{font-size:12px}.drill-badges{grid-template-columns:1fr}.transport{padding:10px 12px;margin-top:12px;border-radius:14px}.transport-inner{gap:6px;flex-wrap:wrap;justify-content:center}.run-controls{flex:1;justify-content:center;gap:5px}.run-controls button{min-width:64px;padding:7px 10px;min-height:40px;flex:1;font-size:12px}.run{min-width:76px!important}.speed-label{font-size:10px;margin-left:2px}.speed-label select{width:64px;min-height:34px;padding:2px 4px;margin:0}.estop{width:100%;font-size:12px;min-height:38px;padding:6px}.estop kbd{display:none}.reflection{grid-template-columns:1fr;gap:12px;padding:16px}.below{grid-template-columns:1fr;gap:16px;margin:24px 6px}.below p{max-width:300px}footer{font-size:9px}.editor-tabs{margin:10px 14px 0}.editor-help{margin:8px 14px}.program-toolbar{margin:10px 14px 0}.editor-status{padding:0 14px}.help-row{margin:4px 14px 12px}.hint{margin:0 14px 12px}.trace-details{padding:0 14px 10px}.lab-panel{padding:12px 14px}#code-view{margin:12px 14px}dialog{padding:22px 18px}dialog p,dialog li{font-size:13px}.facing{font-size:12px;width:17px;height:17px}}
+@media(max-width:360px){.brand small{display:none}.header-actions .quiet{font-size:9.5px;padding:5px 6px}.board-surround{margin:0 10px;padding:8px 10px 14px}.board{max-width:215px}.speed-label{display:none}.block-row .row-control{width:30px}.map-key{gap:8px;margin-left:10px;margin-right:10px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+@media print{.masthead,.transport,.workspace,.intro,.below,footer,#missions{display:none}dialog[open]{position:static;max-height:none;overflow:visible;border:0;width:100%;max-width:none;box-shadow:none;padding:0}.dialog-close,#print-guide{display:none}dialog::backdrop{display:none}}
+
+</style>
+
+</head>
+<body>
+<a class="skip" href="#workspace">Skip to mission</a>
+<header class="masthead">
+  <a class="brand" href="#workspace"><span class="brand-mark" aria-hidden="true">ol<span>•</span></span><span>OpenLine<small>ROBOT ACADEMY</small></span></a>
+  <div class="header-actions"><span class="privacy-pill">No account. Just curiosity.</span><button id="guide-open" class="quiet">Educator guide ↗</button><button id="settings-open" class="quiet" aria-label="Open progress and offline options">Save &amp; offline</button></div>
+</header>
+<main>
+  <section class="intro" aria-labelledby="headline">
+    <div><div class="eyebrow">A LITTLE ROBOT. A WORLD OF POSSIBILITIES.</div><h1 id="headline">Ready, set, <span>robot.</span></h1><p>Meet Pip. You make the plan. Pip makes the moves.</p></div>
+    <div class="intro-note"><span class="little-spark" aria-hidden="true">✳</span><span>Big ideas start<br>with small steps.</span></div>
+  </section>
+  <nav id="missions" aria-label="Choose a mission"></nav>
+  <section id="workspace" class="workspace" aria-labelledby="mission-title">
+    <section class="world-panel">
+      <div class="panel-top"><div><div class="eyebrow" id="mission-tag">MISSION 01</div><h2 id="mission-title">First delivery</h2></div><span id="mission-time" class="time-chip">3 min</span></div>
+      <p id="brief" class="brief"></p>
+      <div class="world-toolbar">
+        <span class="world-name"><span aria-hidden="true">◈</span> PIP’S COMMUNITY GARDEN</span>
+        <label id="variant-label" hidden>Test route <select id="variant"><option value="0">A (Short)</option><option value="1">B (Medium)</option><option value="2">C (Long)</option></select></label>
+      </div>
+      <div id="sandbox-toolbar" class="sandbox-toolbar" hidden role="group" aria-label="Sandbox map builder">
+        <div class="sandbox-head"><span class="sandbox-label">Map builder: tap a tile to edit</span><label class="preset-label">Preset <select id="sandbox-preset"><option value="0">Zigzag course</option><option value="1">Left-turn spiral</option><option value="2">Open garden (blank)</option></select></label></div>
+        <div class="sandbox-tools">
+          <button id="tool-wall" class="sandbox-tool" aria-pressed="true">🌿 Toggle planter</button>
+          <button id="tool-pip" class="sandbox-tool" aria-pressed="false">🤖 Move Pip</button>
+          <button id="tool-pad" class="sandbox-tool" aria-pressed="false">⚡ Move pad</button>
+          <button id="rotate-pip" class="sandbox-tool" title="Rotate Pip's starting direction">↻ Rotate Pip</button>
+          <button id="reset-map" class="sandbox-tool" title="Restore selected preset map">↺ Reset map</button>
+        </div>
+      </div>
+      <div class="board-surround"><div id="board" class="board" role="img" aria-label="Mission map"></div><div class="compass" aria-hidden="true">N ↑</div></div>
+      <div class="map-key"><span><i class="key-pip"></i> Pip</span><span><i class="key-pad">⚡</i> Charging pad</span><span><i class="key-wall"></i> Planter</span><button id="map-open" class="text-button">Text map</button></div>
+      <div class="sensor-strip"><span><small>POSITION</small><strong id="position">Row 4, column 1</strong></span><span><small>FACING</small><strong id="direction">East →</strong></span><span><small>SENSOR AHEAD</small><strong id="sensor">Clear</strong></span></div>
+      <div id="status" class="status" role="status" aria-live="polite" aria-atomic="true">Ready when you are.</div>
+      <div id="safety-panel" class="lab-panel" hidden>
+        <label>Try an unexpected condition <select id="scenario"><option value="normal">1. Normal route (Deliver)</option><option value="new-crate">2. A crate appears mid-route</option><option value="sensor-fault">3. Sensor fails after two moves</option></select></label>
+        <p id="safety-tip">Complete all 4 safety drills below! For Drill 4, press Run and hit Emergency stop while Pip is moving.</p>
+        <div id="stop-practice" class="drill-badges" aria-label="Safety drill checklist"></div>
+      </div>
+    </section>
+    <section class="code-panel" aria-labelledby="program-title">
+      <div class="panel-top"><div><div class="eyebrow">YOU’RE IN CHARGE</div><h2 id="program-title">Your program</h2></div><span id="block-count" class="time-chip">0 / 60</span></div>
+      <div class="editor-tabs" role="group" aria-label="Programming view"><button id="blocks-tab" aria-pressed="true">Blocks</button><button id="code-tab" aria-pressed="false">Code lab <span>↗</span></button></div>
+      <div id="blocks-view">
+        <p class="editor-help">Tap a command to add it. Pip reads from top to bottom.</p>
+        <div id="palette" class="palette" aria-label="Add a command"></div>
+        <div class="program-toolbar"><span>START <span aria-hidden="true">↓</span></span><div><button id="undo" class="text-button">Undo</button><button id="clear" class="text-button">Clear</button></div></div>
+        <div id="program" class="program" aria-label="Program blocks"></div>
+        <div id="code-peek" class="code-peek" aria-label="Live code preview">
+          <div class="code-peek-head"><span>LIVE CODE PREVIEW</span><div class="peek-switches"><button id="peek-js" class="peek-btn" aria-pressed="true">JavaScript</button><button id="peek-py" class="peek-btn" aria-pressed="false">Python</button></div></div>
+          <pre id="peek-source" class="peek-pre"></pre>
+        </div>
+      </div>
+      <div id="code-view" hidden>
+        <label for="source">Robot JavaScript</label>
+        <p class="editor-help">Edit the same program using code. This safe robot language supports the commands below.</p>
+        <textarea id="source" spellcheck="false" autocomplete="off" autocapitalize="off" aria-describedby="code-help"></textarea>
+        <button id="apply-code" class="primary">Use this code</button>
+        <p id="code-help" class="small">move(); left(); right(); wait(); stop();<br>repeat(3) { … } · if (clearAhead()) { … } else { … } · while (!atGoal()) { … }</p>
+        <div class="python-compare">
+          <strong>Python equivalent (read-only concept translation)</strong>
+          <p class="small">See how the exact same logic looks in Python. This app does not execute Python.</p>
+          <pre id="python"></pre>
+        </div>
+      </div>
+      <p id="editor-status" class="editor-status" role="status" aria-live="polite"></p>
+      <div class="help-row"><button id="hint" class="quiet">☼ A little hint</button><button id="starter" class="quiet">Reset program</button></div>
+      <p id="hint-text" class="hint" hidden></p>
+      <details id="trace-details" class="trace-details"><summary>Step detective <span id="tick-count">0 steps</span></summary><p class="small">Each row shows what actually happened. Use Step to watch one decision at a time.</p><ol id="trace" class="trace"></ol><button id="trace-export" class="text-button">Download this trace</button></details>
+    </section>
+  </section>
+  <div class="transport" role="group" aria-label="Robot controls"><div class="transport-inner"><div class="run-controls"><button id="run" class="run"><span aria-hidden="true">▶</span> Run</button><button id="step">Step <span aria-hidden="true">▸</span></button><button id="reset">Reset <span aria-hidden="true">↺</span></button><label class="speed-label">Speed <select id="speed"><option value="600">Steady</option><option value="1100">Slow</option><option value="200">Quick</option><option value="40">Turbo</option></select></label></div><button id="estop" class="estop"><span aria-hidden="true">■</span> Emergency stop <kbd>Esc</kbd></button></div></div>
+  <section id="reflection" class="reflection" hidden aria-labelledby="reflection-title"><div><div class="eyebrow">MADE IT. NOW MAKE IT MAKE SENSE.</div><h2 id="reflection-title">You got Pip there!</h2><p id="concept"></p></div><div><h3 id="question"></h3><div id="answers"></div><p id="answer-feedback" role="status"></p><button id="next" class="primary">Next mission →</button></div></section>
+  <section class="below"><div><span class="feature-icon" aria-hidden="true">↻</span><h3>Try. Notice. Change.</h3><p>A bug is a clue. Change one thing, then test your idea.</p></div><div><span class="feature-icon" aria-hidden="true">◉</span><h3>Make a prediction.</h3><p>Before you press Run, point to where Pip will go.</p></div><div><span class="feature-icon" aria-hidden="true">✋</span><h3>You hold the stop button.</h3><p>Robots need boundaries. Stop, reset, and try again.</p></div></section>
+  <footer><span>OPENLINE ROBOT ACADEMY <span class="footer-dot">•</span> Built for curious minds.</span><span>Free · No tracking · Works offline</span><p class="small">A learning simulation. Pip doesn’t control physical robots.</p></footer>
+</main>
+<dialog id="guide-dialog" aria-labelledby="guide-title">
+  <button class="dialog-close" data-close aria-label="Close educator guide">×</button>
+  <div class="eyebrow">45 MINUTES · AGES 8–17 · NO HARDWARE · PRINTABLE</div>
+  <h2 id="guide-title">Educator Guide &amp; 45-Minute Workshop Plan</h2>
+  <p>Students predict, program, observe, and revise. Success means explaining a choice, not finishing fastest. <button id="print-guide" class="quiet" style="margin-left:8px;padding:4px 10px;min-height:32px">🖨️ Print guide</button></p>
+  <ol class="guide-timeline">
+    <li><b>0–5 min · First delivery (Sequences &amp; State).</b> Point right together, then open Mission 01. Ask students to tap Forward three times and press Run. Check: can they explain why Turn left changes facing without changing tiles?</li>
+    <li><b>5–15 min · Garden path (Counted Loops).</b> Build Mission 02: Repeat 4 { Forward }, tap "After End ⤵", Turn left, Repeat 3 { Forward }. Ask: what happens if Turn left is put inside the first Repeat group?</li>
+    <li><b>15–27 min · Sensor scout (Conditionals &amp; Feedback).</b> Build Until pad → If clear → Forward → Else → Turn left. Test the exact same program on routes A, B, and C. Discuss why re-checking the sensor generalizes across lengths, and what maze shape would break a left-turn-only rule.</li>
+    <li><b>27–37 min · Safety lab (Debugging, Fail-Closed &amp; E-Stop).</b> Step through the buggy starter, remove Block 01 (Turn left), and complete all 4 safety drills: Normal delivery, Crate appears, Sensor fails ("unknown"), and mid-run Emergency stop + explicit Reset.</li>
+    <li><b>37–45 min · Creative sandbox &amp; Code lab (Synthesis).</b> Pairs design a custom maze in Mission 05 (Creative sandbox) and trade devices to solve each other's challenge, or edit Robot JavaScript and compare Python in Code lab.</li>
+  </ol>
+  <h3>Answer Key &amp; Misconception Coaching</h3>
+  <ul class="guide-list">
+    <li><b>01 First delivery:</b> <code>move(); move(); move();</code> · Reflection answer: <i>Right one tile, then up one tile.</i></li>
+    <li><b>02 Garden path:</b> <code>repeat(4) { move(); } left(); repeat(3) { move(); }</code> · Reflection answer: <i>A small square, ending where it started.</i></li>
+    <li><b>03 Sensor scout:</b> <code>while (!atGoal()) { if (clearAhead()) { move(); } else { left(); } }</code> · Reflection answer: <i>It checks the path again before each move.</i></li>
+    <li><b>04 Safety lab:</b> Remove initial <code>left();</code> leaving <code>repeat(5) { move(); }</code> · Reflection answer: <i>Stop and check before moving again.</i></li>
+    <li><b>05 Creative sandbox (default Zigzag):</b> <code>repeat(2) { move(); move(); left(); move(); right(); }</code> · Reflection answer: <i>Write and run a working solution on the map yourself first.</i></li>
+  </ul>
+  <h3>Shared Devices, Accessibility &amp; Troubleshooting</h3>
+  <p><b>Pair protocol (2–3 students per device):</b> Driver operates buttons; Navigator predicts each step and watches Step detective; optional Safety Observer calls Emergency stop on hazards. Swap roles every mission (or every 5 minutes).</p>
+  <p><b>Troubleshooting:</b> If blocks are added inside a loop by mistake, tap Undo or tap the <b>After End ⤵</b> button on the End row. If controls are locked in red, Emergency stop is latched—press <b>Reset</b> to release. If a browser blocks local HTML files, serve <code>web/</code> from a local server or approved HTTPS host, or use the unplugged paper grid backup.</p>
+  <p class="small">This guide is structured for a 45-minute workshop; real classroom validation with students and educators remains pending.</p>
+</dialog>
+<dialog id="settings-dialog" aria-labelledby="settings-title"><button class="dialog-close" data-close aria-label="Close save and offline options">×</button><div class="eyebrow">YOURS, ON THIS DEVICE</div><h2 id="settings-title">Pick up where you left off.</h2><p id="save-status"></p><p>Drafts and completed learning checks stay in this browser. Refresh always parks Pip. On a shared device, progress belongs to the device, not an individual student.</p><div class="dialog-buttons"><button id="export-progress" class="primary">Save progress file</button><label class="file-button">Load progress file<input id="import-progress" type="file" accept="application/json,.json"></label></div><p id="import-status" role="status"></p><h3>Take the garden offline.</h3><p id="offline-status">Checking offline availability…</p><button id="cache-offline">Prepare offline copy</button><button id="install" hidden>Install app</button><p class="small">The separate OpenLine-Robot-Academy.html download is self-contained. Open it in a browser that permits local HTML. For phones or managed Chromebooks, a verified installed copy is usually easier.</p><details><summary>Start over on a shared device</summary><p>This clears Academy drafts and progress from this browser.</p><button id="erase-progress" class="danger">Erase local progress</button></details></dialog>
+<dialog id="map-dialog" aria-labelledby="map-title"><button class="dialog-close" data-close aria-label="Close text map">×</button><h2 id="map-title">Pip’s map, in words.</h2><p id="map-description"></p><table id="text-map"><caption>Rows run top to bottom. Columns run left to right.</caption></table></dialog>
+<script>
+/* OpenLine Robot Academy. MIT. Pure, bounded, deterministic simulation. */
+(function (root, factory) {
+  const api = factory();
+  if (typeof module === 'object' && module.exports) module.exports = api;
+  else root.Academy = api;
+})(typeof globalThis !== 'undefined' ? globalThis : this, function () {
+  'use strict';
+  const LIMITS = Object.freeze({blocks:60, depth:6, ticks:160, repeat:20});
+  const OPS = ['move','left','right','wait','stop','repeat','until','if','else','end'];
+  const DIRS = [[0,-1],[1,0],[0,1],[-1,0]];
+  const DIRECTIONS = ['north','east','south','west'];
+  function validateTokens(input) {
+    if (!Array.isArray(input) || input.length > LIMITS.blocks) throw Error('Use 60 blocks or fewer.');
+    return input.map((t,i) => {
+      if (!t || typeof t !== 'object' || !OPS.includes(t.op)) throw Error('Unknown block at '+(i+1)+'.');
+      const out={op:t.op};
+      if(t.op==='repeat') {
+        if(!Number.isInteger(t.n)||t.n<1||t.n>LIMITS.repeat) throw Error('Repeat needs a whole number from 1 to 20.');
+        out.n=t.n;
+      }
+      return out;
+    });
+  }
+  function compile(input) {
+    const tokens=validateTokens(input), stack=[], jump={}, other={};
+    tokens.forEach((t,i)=>{
+      if(['repeat','until','if'].includes(t.op)) {
+        stack.push({op:t.op,i,otherwise:null});
+        if(stack.length>LIMITS.depth) throw Error('Use at most 6 groups inside each other.');
+      } else if(t.op==='else') {
+        const top=stack[stack.length-1];
+        if(!top||top.op!=='if'||top.otherwise!==null) throw Error('Block '+(i+1)+': Else belongs inside one If clear group.');
+        top.otherwise=i; other[top.i]=i;
+      } else if(t.op==='end') {
+        const top=stack.pop();
+        if(!top) throw Error('Block '+(i+1)+': this End needs a Repeat, Until or If above it.');
+        jump[top.i]=i; jump[i]=top.i;
+        if(top.otherwise!==null) jump[top.otherwise]=i;
+      }
+    });
+    if(stack.length)throw Error('Add End for block '+(stack[stack.length-1].i+1)+'.');
+    return {tokens,jump,other};
+  }
+  function atGoal(state) {return state.x===state.map.goal.x&&state.y===state.map.goal.y;}
+  function occupied(map,x,y) {return x<0||y<0||x>=map.w||y>=map.h||map.walls.some(p=>p[0]===x&&p[1]===y);}
+  function sensor(state) {
+    if(state.scenario==='sensor-fault'&&state.moves>=2)return 'unknown';
+    const [dx,dy]=DIRS[state.dir];
+    if(state.scenario==='new-crate'&&state.moves>=2&&state.x+dx===3&&state.y+dy===2)return 'blocked';
+    return occupied(state.map,state.x+dx,state.y+dy)?'blocked':'clear';
+  }
+  function validateMap(map) {
+    if(!map||!Number.isInteger(map.w)||!Number.isInteger(map.h)||map.w<2||map.h<2||map.w>12||map.h>12)throw Error('Invalid map.');
+    if(!Array.isArray(map.walls)||map.walls.length>map.w*map.h||map.walls.some(p=>!Array.isArray(p)||p.length!==2||!p.every(Number.isInteger)||p[0]<0||p[1]<0||p[0]>=map.w||p[1]>=map.h))throw Error('Invalid walls.');
+    for(const p of [map.start,map.goal])if(!p||!Number.isInteger(p.x)||!Number.isInteger(p.y)||occupied(map,p.x,p.y))throw Error('Invalid start or goal.');
+    if(!Number.isInteger(map.start.dir)||map.start.dir<0||map.start.dir>3)throw Error('Invalid direction.');
+  }
+  function create(map,input,scenario='normal') {
+    validateMap(map); const program=compile(input);
+    if(!['normal','sensor-fault','new-crate'].includes(scenario))throw Error('Unknown scenario.');
+    return {map:JSON.parse(JSON.stringify(map)),...program,x:map.start.x,y:map.start.y,dir:map.start.dir,
+      scenario,pc:0,active:-1,ticks:0,moves:0,turns:0,loops:{},status:'ready',trace:[],message:'Ready when you are.',visited:[[map.start.x,map.start.y]]};
+  }
+  function record(s,kind,message,index=s.active) {
+    s.message=message;s.trace.push({tick:s.ticks,block:index+1,kind,message,x:s.x,y:s.y,facing:DIRECTIONS[s.dir],sensor:sensor(s)});
+    return s;
+  }
+  function goalHint(s) {
+    const dx=s.map.goal.x-s.x, dy=s.map.goal.y-s.y, parts=[];
+    if(dy!==0)parts.push(Math.abs(dy)+' tile'+(Math.abs(dy)>1?'s':'')+' '+(dy<0?'north (↑)':'south (↓)'));
+    if(dx!==0)parts.push(Math.abs(dx)+' tile'+(Math.abs(dx)>1?'s':'')+' '+(dx>0?'east (→)':'west (←)'));
+    return parts.length?'Pad is '+parts.join(' and ')+' from Pip.':'Pip is on the pad.';
+  }
+  function stop(s) {s.status='estop';return record(s,'estop','Emergency stop. Pip stays here until you reset.');}
+  function step(s) {
+    if(!['ready','running'].includes(s.status))return s;
+    if(atGoal(s)){s.status='success';return record(s,'success','Delivery complete! Your program reached the charging pad.');}
+    if(s.ticks>=LIMITS.ticks){s.status='budget';return record(s,'budget','160 steps used. Look for a loop that never reaches the pad. '+goalHint(s));}
+    if(s.pc>=s.tokens.length){
+      s.status='finished';
+      if(!s.tokens.length)return record(s,'finished','Your program has no blocks yet. Tap Forward to add your first step.');
+      const hasIf=s.tokens.some(t=>t.op==='if'), hasLoop=s.tokens.some(t=>t.op==='until'||t.op==='repeat');
+      const tip=hasIf&&!hasLoop?'Tip: An If block checks only once — wrap it inside Until pad to keep checking!':'Check the path and add or change a block.';
+      return record(s,'finished','Program ended before the pad. '+goalHint(s)+' '+tip);
+    }
+    s.status='running';s.active=s.pc;s.ticks++;
+    const i=s.pc,t=s.tokens[i];s.pc++;
+    if(t.op==='move') {
+      const reading=sensor(s);
+      if(reading!=='clear') {
+        s.status=reading==='unknown'?'sensor-fault':'blocked';
+        if(reading==='unknown')return record(s,'unknown','Sensor unavailable at Block '+(i+1)+'. Pip stopped safely before moving. Reset to try again.');
+        const [dx,dy]=DIRS[s.dir], nx=s.x+dx, ny=s.y+dy;
+        const outOfBounds=nx<0||ny<0||nx>=s.map.w||ny>=s.map.h;
+        const isCrate=s.scenario==='new-crate'&&s.moves>=2&&nx===3&&ny===2;
+        const obstacle=outOfBounds?'the garden edge':isCrate?'an unexpected crate at Row '+(ny+1)+', Col '+(nx+1):'a planter at Row '+(ny+1)+', Col '+(nx+1);
+        return record(s,'blocked','Path blocked at Block '+(i+1)+' by '+obstacle+'. Pip stayed put. Turn first, or check the sensor.');
+      }
+      const [dx,dy]=DIRS[s.dir];s.x+=dx;s.y+=dy;s.moves++;s.visited.push([s.x,s.y]);
+      record(s,'move','Moved one tile '+DIRECTIONS[s.dir]+' to Row '+(s.y+1)+', Col '+(s.x+1)+'.');
+    } else if(t.op==='left'||t.op==='right') {
+      s.dir=(s.dir+(t.op==='left'?3:1))%4;s.turns++;record(s,'turn','Turned '+t.op+'. Now facing '+DIRECTIONS[s.dir]+'.');
+    } else if(t.op==='wait')record(s,'wait','Waited one step. Position stays the same.');
+    else if(t.op==='stop'){s.status='stopped';record(s,'stop','Stop block at Block '+(i+1)+': Pip is safely parked.');}
+    else if(t.op==='repeat') {
+      if(s.loops[i]===undefined)s.loops[i]=t.n;
+      record(s,'repeat','Repeat group: '+s.loops[i]+' trip(s) left.');
+    } else if(t.op==='until') {
+      if(atGoal(s))s.pc=s.jump[i]+1;
+      record(s,'until','At the pad? '+(atGoal(s)?'Yes.':'No — try the group again.'));
+    } else if(t.op==='if') {
+      const reading=sensor(s);
+      if(reading==='unknown'){s.status='sensor-fault';return record(s,'unknown','Sensor unavailable at Block '+(i+1)+'. Pip cannot choose safely, so it stopped.');}
+      if(reading==='blocked')s.pc=s.other[i]!==undefined?s.other[i]+1:s.jump[i]+1;
+      record(s,'sensor','Ahead is '+reading+'. '+(reading==='clear'?'Use the If group.':'Use Else, or skip this group.'));
+    } else if(t.op==='else') {s.pc=s.jump[i]+1;record(s,'else','Skip Else: the clear path was chosen.');}
+    else if(t.op==='end') {
+      const start=s.jump[i],op=s.tokens[start].op;
+      if(op==='repeat') {s.loops[start]--;if(s.loops[start]>0)s.pc=start;else delete s.loops[start];}
+      if(op==='until')s.pc=start;
+      record(s,'end','End of group.');
+    }
+    if(atGoal(s)&&s.status==='running'){s.status='success';record(s,'success','Delivery complete! Your program reached the charging pad.');}
+    return s;
+  }
+  function run(map,tokens,scenario) {
+    const s=create(map,tokens,scenario);
+    while(['ready','running'].includes(s.status))step(s);
+    return s;
+  }
+  function toCode(input,language='js') {
+    const tokens=validateTokens(input);let depth=0;const lines=[];
+    tokens.forEach(t=>{
+      if(t.op==='end'||t.op==='else')depth=Math.max(0,depth-1);
+      let line;
+      if(language==='python') {
+        line={move:'robot.move()',left:'robot.left()',right:'robot.right()',wait:'robot.wait()',stop:'robot.stop()',until:'while not robot.at_goal():',if:'if robot.clear_ahead():',else:'else:',end:'# end'}[t.op];
+        if(t.op==='repeat')line='for step in range('+t.n+'):';
+      } else {
+        line={move:'move();',left:'left();',right:'right();',wait:'wait();',stop:'stop();',until:'while (!atGoal()) {',if:'if (clearAhead()) {',else:'} else {',end:'}'}[t.op];
+        if(t.op==='repeat')line='repeat('+t.n+') {';
+      }
+      lines.push('  '.repeat(depth)+line);
+      if(['repeat','until','if','else'].includes(t.op))depth++;
+    });return lines.join('\n');
+  }
+  function fromCode(text) {
+    if(typeof text!=='string'||text.length>12000)throw Error('Code is too long. Keep it under 12,000 characters.');
+    const lex=text.replace(/\/\/[^\n]*/g,'').replace(/\s+/g,'');let pos=0;const out=[];
+    while(pos<lex.length){
+      const rest=lex.slice(pos);let match;
+      if((match=rest.match(/^(move|left|right|wait|stop)\(\);/))){out.push({op:match[1]});pos+=match[0].length;}
+      else if((match=rest.match(/^repeat\((\d+)\)\{/))){out.push({op:'repeat',n:Number(match[1])});pos+=match[0].length;}
+      else if(rest.startsWith('while(!atGoal()){')){out.push({op:'until'});pos+=17;}
+      else if(rest.startsWith('if(clearAhead()){')){out.push({op:'if'});pos+=17;}
+      else if(rest.startsWith('}else{')){out.push({op:'else'});pos+=6;}
+      else if(rest.startsWith('}')){out.push({op:'end'});pos++;}
+      else throw Error('Check your syntax near “'+rest.slice(0,24)+'”. Use the robot commands in the example.');
+      if(out.length>LIMITS.blocks)throw Error('Use 60 blocks or fewer.');
+    }
+    compile(out);return out;
+  }
+  function cleanProgress(value,ids) {
+    if(!value||typeof value!=='object'||value.version!==1)throw Error('This is not an Academy progress file (version 1).');
+    const p={version:1,mission:ids.includes(value.mission)?value.mission:ids[0],drafts:{},completed:[],checks:[],safety:false,lab:[],sandboxMap:null};
+    for(const id of ids){
+      if(value.drafts&&Object.prototype.hasOwnProperty.call(value.drafts,id))p.drafts[id]=validateTokens(value.drafts[id]);
+      if(Array.isArray(value.completed)&&value.completed.includes(id))p.completed.push(id);
+      if(Array.isArray(value.checks)&&value.checks.includes(id))p.checks.push(id);
+    }
+    if(value.sandboxMap&&typeof value.sandboxMap==='object'){
+      try{validateMap(value.sandboxMap);p.sandboxMap=JSON.parse(JSON.stringify(value.sandboxMap));}catch(e){p.sandboxMap=null;}
+    }
+    p.safety=value.safety===true;p.lab=['delivery','crate','sensor','stop'].filter(k=>Array.isArray(value.lab)&&value.lab.includes(k));return p;
+  }
+  return {LIMITS,OPS,DIRECTIONS,compile,create,step,run,stop,sensor,atGoal,occupied,validateMap,validateTokens,toCode,fromCode,cleanProgress,goalHint};
+});
+
+</script>
+<script>
+(function(root){
+  'use strict';
+  function corridor(turn){
+    const walls=[];for(let y=0;y<6;y++)for(let x=0;x<7;x++)if(!((y===4&&x<=turn)||(x===turn&&y>=1&&y<=4)))walls.push([x,y]);
+    return {w:7,h:6,start:{x:0,y:4,dir:1},goal:{x:turn,y:1},walls};
+  }
+  const missions=[{
+    id:'delivery',title:'First delivery',tag:'SEQUENCES',icon:'01',time:'3 min',
+    brief:'Help Pip reach the charging pad. Tap Forward three times, then press Run.',
+    concept:'A sequence is a list of steps in order. Pip follows your blocks from top to bottom.',
+    hint:'Pip starts facing East (right →). Each Forward block moves 1 tile right. Count the 3 spaces to the charging pad.',
+    challenge:'Try adding one extra Forward after the third one. Why does Pip stop safely on the pad anyway?',
+    map:{w:5,h:5,start:{x:0,y:3,dir:1},goal:{x:3,y:3},walls:[[1,1],[2,1],[4,0],[4,1],[4,4]]},
+    allowed:['move','left','right'],starter:[],solution:[{op:'move'},{op:'move'},{op:'move'}],
+    question:'Pip faces right. What does Forward, Turn left, Forward do?',
+    answers:['Right one tile, then up one tile.','Right three tiles.','Up two tiles.'],correct:0,
+    explain:'A turn changes the direction Pip faces without leaving the tile. The next Forward moves in that new direction.'
+  },{
+    id:'garden',title:'Garden path',tag:'LOOPS + TURNS',icon:'02',time:'8 min',
+    brief:'Go 4 tiles right, turn left, then go 3 tiles up. Let two Repeat groups do the counting!',
+    concept:'A loop repeats a group of instructions. Keep the turn outside the first loop: order still matters.',
+    hint:'1) Tap Repeat (set to 4) and tap Forward. 2) Tap "After End ⤵" to step outside the loop. 3) Tap Turn left, then add Repeat (set to 3) with Forward inside.',
+    challenge:'Move Turn left inside the first Repeat group. Predict what shape Pip will trace before pressing Run!',
+    map:{w:6,h:6,start:{x:0,y:4,dir:1},goal:{x:4,y:1},walls:[[1,1],[2,1],[1,2],[2,2],[0,0],[5,5],[1,5],[2,5],[3,5]]},
+    allowed:['move','left','right','repeat'],starter:[],
+    solution:[{op:'repeat',n:4},{op:'move'},{op:'end'},{op:'left'},{op:'repeat',n:3},{op:'move'},{op:'end'}],
+    question:'Repeat 4 { Forward; Turn left; } makes what shape on an empty floor?',
+    answers:['A straight line of four tiles.','A small square, ending where it started.','Four left turns without moving.'],correct:1,
+    explain:'Each trip moves one tile and turns left. Four trips trace a 4-sided square. A loop repeats every block inside it.'
+  },{
+    id:'scout',title:'Sensor scout',tag:'SENSE + DECIDE',icon:'03',time:'10 min',
+    brief:'Let Pip sense the corner! Until pad: if ahead is clear, move forward; else, turn left. Test on routes A, B, and C.',
+    concept:'Feedback means checking the world again after each move. One smart rule can solve routes of different lengths.',
+    hint:'1) Tap Until pad. 2) Tap If clear, then tap Forward. 3) Tap the Else row, then tap Turn left. Now run the exact same program on routes A, B, and C!',
+    challenge:'A left-turn rule solves these L-shaped routes. Would it solve a route that bends right? Try building one in Sandbox!',
+    maps:[corridor(3),corridor(4),corridor(5)],
+    allowed:['move','left','right','until','if','repeat'],starter:[],
+    solution:[{op:'until'},{op:'if'},{op:'move'},{op:'else'},{op:'left'},{op:'end'},{op:'end'}],
+    question:'Route B has the corner one tile farther away than Route A. Why does the exact same sensor program still work?',
+    answers:['It memorizes the number of tiles.','It always turns after three moves.','It checks the path again before each move.'],correct:2,
+    explain:'Each time through Until pad, Pip takes a fresh sensor reading. A different maze shape may need a different rule.'
+  },{
+    id:'safety',title:'Safety lab',tag:'DEBUG + PROTECT',icon:'04',time:'10 min',
+    brief:'This starter has a bug! Use Step to find it. Then complete all 4 safety drills: Deliver, Crate, Sensor fault, and Emergency stop.',
+    concept:'A safe robot needs both a plan and a stopping rule. Blocked paths and failed sensors require stopping safely.',
+    hint:'1) Remove Block 01 (Turn left) and Run to complete Normal delivery. 2) Switch condition to "A crate appears" and Run. 3) Switch to "Sensor fails" and Run. 4) Press Run and hit the red Emergency stop button mid-run!',
+    challenge:'Write a safety rule for a delivery robot in a crowded school hallway. What could its front sensor miss?',
+    map:{w:7,h:5,start:{x:0,y:2,dir:1},goal:{x:5,y:2},walls:[[0,1],[1,0],[2,0],[4,0],[5,0],[6,1],[1,4],[2,4],[4,4],[5,4]]},
+    allowed:['move','left','right','wait','stop','repeat','until','if'],
+    starter:[{op:'left'},{op:'repeat',n:5},{op:'move'},{op:'end'}],
+    solution:[{op:'repeat',n:5},{op:'move'},{op:'end'}],
+    question:'Pip’s sensor says “unknown.” What is the safest next action?',
+    answers:['Keep moving because it was clear before.','Stop and check before moving again.','Treat unknown as an empty path.'],correct:1,
+    explain:'Old evidence cannot prove the path is still clear. When a sensor fails, stop immediately and wait for human inspection.'
+  },{
+    id:'sandbox',title:'Creative sandbox',tag:'BUILD + INVENT',icon:'05',time:'Open',
+    brief:'Design your own garden challenge or choose a preset below! Tap map tiles in Builder mode to place planters, Pip, or the pad.',
+    concept:'Engineers test their ideas by designing new worlds, comparing loop vs. sensor strategies, and sharing challenges with partners.',
+    hint:'To solve the default Zigzag course: try Repeat 2 { Forward; Forward; Turn left; Forward; Turn right; } — or pick Spiral or Open Garden in the Map Builder!',
+    challenge:'Build a custom maze on your screen, check that your program solves it, then Clear your program and hand the device to a partner to solve!',
+    sandbox:true,
+    map:{w:6,h:6,start:{x:0,y:4,dir:1},goal:{x:4,y:2},walls:[[1,1],[1,2],[1,3],[3,1],[3,4],[3,5],[5,0],[5,1]]},
+    presets:[
+      {name:'Zigzag course',map:{w:6,h:6,start:{x:0,y:4,dir:1},goal:{x:4,y:2},walls:[[1,1],[1,2],[1,3],[3,1],[3,4],[3,5],[5,0],[5,1]]}},
+      {name:'Left-turn spiral',map:{w:6,h:6,start:{x:0,y:5,dir:1},goal:{x:2,y:3},walls:[[0,0],[1,0],[2,0],[3,0],[4,0],[5,0],[0,1],[0,2],[0,3],[0,4],[1,4],[2,4],[3,4],[3,2]]}},
+      {name:'Open garden (blank)',map:{w:6,h:6,start:{x:0,y:5,dir:1},goal:{x:5,y:0},walls:[]}}
+    ],
+    allowed:['move','left','right','wait','stop','repeat','until','if'],
+    starter:[],
+    solution:[{op:'repeat',n:2},{op:'move'},{op:'move'},{op:'left'},{op:'move'},{op:'right'},{op:'end'}],
+    question:'You build a custom maze for a friend. How can you prove your maze is actually solvable before handing it over?',
+    answers:['Guess that it looks easy enough.','Write and run a working solution on the map yourself first.','Add as many planters as possible.'],correct:1,
+    explain:'Testing your own level with a working program proves a valid path exists from Pip to the charging pad.'
+  }];
+  if(typeof module==='object'&&module.exports)module.exports=missions;else root.AcademyMissions=missions;
+})(typeof globalThis!=='undefined'?globalThis:this);
+
+</script>
+<script>
+/* UI and persistence only. Simulation decisions live in engine.js. */
+(function(){
+  'use strict';
+  const E=window.Academy,M=window.AcademyMissions,$=id=>document.getElementById(id),KEY='openline.robot-academy.v1';
+  const labels={move:['↑','Forward'],left:['↶','Turn left'],right:['↷','Turn right'],wait:['◷','Wait'],stop:['■','Stop'],repeat:['↻','Repeat'],until:['◎','Until pad'],if:['◇','If clear'],else:['↳','Else'],end:['⌟','End']};
+  let progress={version:1,mission:M[0].id,drafts:{},completed:[],checks:[],safety:false,lab:[],sandboxMap:null},storageOK=true,mission,program=[],state,cursor=0,undo=[],timer=null,epoch=0,playing=false,variant=0,scenario='normal',codeMode=false,codeDirty=false,peekLang='js',sandboxTool='wall',installPrompt=null,stopLatched=false;
+  let startupMessage='';
+  try{
+    const saved=localStorage.getItem(KEY);
+    if(saved){
+      try{progress=E.cleanProgress(JSON.parse(saved),M.map(m=>m.id));}
+      catch(parseErr){startupMessage='Saved progress was reset because its format was invalid.';}
+    }
+  }catch(storageErr){storageOK=false;}
+
+  function persist(){
+    progress.mission=mission.id;
+    progress.drafts[mission.id]=E.validateTokens(program);
+    try{localStorage.setItem(KEY,JSON.stringify(progress));storageOK=true;}
+    catch(e){storageOK=false;}
+    updateSaveStatus();
+  }
+  function updateSaveStatus(){$('save-status').textContent=storageOK?'Autosave is on in this browser. No names, accounts, or data sent anywhere.':'Browser storage is unavailable in this mode. Use Save progress file to export your work.';}
+  function map(){
+    if(mission.sandbox&&progress.sandboxMap){
+      try{E.validateMap(progress.sandboxMap);return progress.sandboxMap;}catch(e){progress.sandboxMap=null;}
+    }
+    return mission.maps?mission.maps[variant]:mission.map;
+  }
+  function cancel(){epoch++;if(timer!==null)clearTimeout(timer);timer=null;playing=false;}
+  function fresh(){cancel();state=E.create(map(),[],scenario);state.message='Ready when you are.';if(stopLatched)E.stop(state);if(!(mission&&mission.id==='safety'&&(progress.lab||[]).length===4))$('reflection').hidden=true;renderState();}
+  function switchMission(id){
+    if(mission)persist();cancel();mission=M.find(m=>m.id===id)||M[0];variant=0;scenario='normal';$('variant').value='0';$('scenario').value='normal';
+    program=JSON.parse(JSON.stringify(progress.drafts[mission.id]||mission.starter));cursor=program.length;undo=[];codeDirty=false;
+    codeMode=false;$('blocks-view').hidden=false;$('code-view').hidden=true;$('blocks-tab').setAttribute('aria-pressed','true');$('code-tab').setAttribute('aria-pressed','false');
+    $('mission-title').textContent=mission.title;$('mission-tag').textContent='MISSION '+mission.icon+' / '+mission.tag;$('mission-time').textContent=mission.time;$('brief').textContent=mission.brief;
+    $('variant-label').hidden=!mission.maps;$('safety-panel').hidden=mission.id!=='safety';$('sandbox-toolbar').hidden=!mission.sandbox;$('hint-text').hidden=true;$('editor-status').textContent='';
+    updateCodeViews();renderNav();renderPalette();renderProgram();fresh();persist();
+  }
+  function renderNav(){
+    $('missions').replaceChildren();M.forEach(m=>{const b=document.createElement('button');b.className='mission';b.setAttribute('aria-current',m.id===mission.id?'step':'false');
+      const num=document.createElement('span');num.className='mission-num';num.textContent=progress.checks.includes(m.id)?'✓':m.icon;
+      const text=document.createElement('span'),strong=document.createElement('strong'),small=document.createElement('small');strong.textContent=m.title;small.textContent=m.tag;text.append(strong,small);b.append(num,text);b.addEventListener('click',()=>switchMission(m.id));$('missions').append(b);});
+  }
+  function groupClass(op){return ['repeat','until','end'].includes(op)?'group':['if','else'].includes(op)?'sensor':op==='stop'?'stop':'';}
+  function renderPalette(){
+    $('palette').replaceChildren();mission.allowed.forEach(op=>{const b=document.createElement('button');b.className='command '+groupClass(op);b.dataset.op=op;
+      const sym=document.createElement('span');sym.className='symbol';sym.textContent=labels[op][0];sym.setAttribute('aria-hidden','true');b.append(sym,document.createTextNode(labels[op][1]));b.setAttribute('aria-label','Add '+labels[op][1]+' block');b.addEventListener('click',()=>{
+        const nodes=op==='repeat'?[{op,n:3},{op:'end'}]:op==='until'?[{op},{op:'end'}]:op==='if'?[{op},{op:'else'},{op:'end'}]:[{op}];
+        if(program.length+nodes.length>E.LIMITS.blocks){notice('The program is full. Use loops or remove a block.');return;}
+        edit(()=>{program.splice(cursor,0,...nodes);cursor++;});
+      });$('palette').append(b);});
+  }
+  function notice(message){$('editor-status').textContent=message;}
+  function updateCodeViews(){
+    const jsCode=E.toCode(program), pyCode=E.toCode(program,'python');
+    if(!codeDirty){$('source').value=jsCode;$('python').textContent=pyCode||'# Add blocks to see Python code';}
+    const peekText=peekLang==='python'?(pyCode||'# Add blocks above to see Python code'):(jsCode||'// Add blocks above to see JavaScript code');
+    if($('peek-source'))$('peek-source').textContent=peekText;
+  }
+  function edit(fn){
+    if(state.status==='estop'){notice('Press Reset to release Emergency stop before editing.');return;}
+    cancel();undo.push(JSON.stringify(program));if(undo.length>40)undo.shift();fn();cursor=Math.max(0,Math.min(cursor,program.length));
+    codeDirty=false;fresh();renderProgram();persist();
+  }
+  function renderProgram(){
+    const container=$('program');container.replaceChildren();$('block-count').textContent=program.length+' / 60';let depth=0;
+    function marker(){const x=document.createElement('div');x.className='insertion';x.textContent='＋ NEXT BLOCK GOES HERE';container.append(x);}
+    if(!program.length){const empty=document.createElement('div');empty.className='empty';const icon=document.createElement('span');icon.textContent='↑';empty.append(icon,document.createTextNode('Your first idea goes here.'),document.createElement('br'),document.createTextNode('Tap Forward above to begin.'));container.append(empty);}
+    program.forEach((t,i)=>{
+      if(i===cursor)marker();if(t.op==='end'||t.op==='else')depth=Math.max(0,depth-1);
+      const row=document.createElement('div');row.className='block-row '+groupClass(t.op);row.style.setProperty('--depth',Math.min(depth,4));row.dataset.index=i;
+      const isEnd=t.op==='end', isElse=t.op==='else';
+      const label=document.createElement('button');label.className='block-label';
+      const actionHint=isEnd?'Step outside group (add after End)':isElse?'Add inside Else branch':'Add blocks after this';
+      label.setAttribute('aria-label','Block '+(i+1)+', '+labels[t.op][1]+'. '+actionHint+'.');
+      const n=document.createElement('span');n.className='block-index';n.textContent=String(i+1).padStart(2,'0');
+      const text=document.createElement('span');text.textContent=labels[t.op][0]+' '+labels[t.op][1];
+      label.append(n,text);
+      if(isEnd||isElse){
+        const badge=document.createElement('span');badge.className='after-badge';
+        badge.textContent=isEnd?'After End ⤵':'Inside Else ⤵';
+        label.append(badge);
+      }
+      label.addEventListener('click',()=>{cursor=i+1;renderProgram();container.querySelectorAll('.block-label')[i]?.focus();});
+      row.append(label);
+      if(t.op==='repeat'){const count=document.createElement('input');count.type='number';count.min='1';count.max='20';count.value=t.n;count.setAttribute('aria-label','Repeat count for block '+(i+1));count.addEventListener('change',()=>{const v=Number(count.value);if(!Number.isInteger(v)||v<1||v>20){count.value=t.n;notice('Repeat needs a whole number from 1 to 20.');return;}edit(()=>{t.n=v;});});row.append(count);}
+      for(const [symbol,title,action] of [['↑','Move up',()=>{[program[i-1],program[i]]=[program[i],program[i-1]];}],['↓','Move down',()=>{[program[i+1],program[i]]=[program[i],program[i+1]];}],['×','Remove',()=>{program.splice(i,1);cursor=Math.min(cursor,program.length);} ]]){
+        const b=document.createElement('button');b.className='row-control';b.textContent=symbol;b.setAttribute('aria-label',title+' block '+(i+1));b.disabled=(title==='Move up'&&i===0)||(title==='Move down'&&i===program.length-1);b.addEventListener('click',()=>edit(action));row.append(b);
+      }
+      container.append(row);if(['repeat','until','if','else'].includes(t.op))depth++;
+    });if(program.length&&cursor===program.length)marker();
+    $('undo').disabled=!undo.length;$('clear').disabled=!program.length;
+    updateCodeViews();
+    try{E.compile(program);notice('');}catch(e){notice(e.message);}
+  }
+  function robot(){const p=document.createElement('div');p.className='pip';p.setAttribute('aria-hidden','true');p.innerHTML='<div class="pip-body"><div class="face"><i class="eye"></i><i class="eye"></i></div></div><span class="facing"></span>';p.querySelector('.facing').textContent=['↑','→','↓','←'][state.dir];return p;}
+  function handleSandboxTileClick(x,y){
+    if(!mission.sandbox||playing)return;
+    if(state.status==='estop'){notice('Press Reset to release Emergency stop before editing the map.');return;}
+    const current=JSON.parse(JSON.stringify(map()));
+    if(sandboxTool==='wall'){
+      if((current.start.x===x&&current.start.y===y)||(current.goal.x===x&&current.goal.y===y)){
+        notice('Pip and the charging pad need open tiles! Move them first to place a planter here.');return;
+      }
+      const idx=current.walls.findIndex(w=>w[0]===x&&w[1]===y);
+      if(idx>=0)current.walls.splice(idx,1);else current.walls.push([x,y]);
+      notice(idx>=0?'Removed planter at Row '+(y+1)+', Col '+(x+1)+'.':'Added planter at Row '+(y+1)+', Col '+(x+1)+'.');
+    } else if(sandboxTool==='pip'){
+      if(current.goal.x===x&&current.goal.y===y){notice('Choose a tile different from the charging pad.');return;}
+      current.walls=current.walls.filter(w=>!(w[0]===x&&w[1]===y));
+      current.start.x=x;current.start.y=y;
+      notice('Moved Pip start to Row '+(y+1)+', Col '+(x+1)+'.');
+    } else if(sandboxTool==='pad'){
+      if(current.start.x===x&&current.start.y===y){notice('Choose a tile different from Pip’s starting tile.');return;}
+      current.walls=current.walls.filter(w=>!(w[0]===x&&w[1]===y));
+      current.goal.x=x;current.goal.y=y;
+      notice('Moved charging pad to Row '+(y+1)+', Col '+(x+1)+'.');
+    }
+    progress.sandboxMap=current;fresh();persist();$('board').querySelector(`.cell[data-x='${x}'][data-y='${y}']`)?.focus();
+  }
+  function renderBoard(){
+    const b=$('board'),m=state.map;b.replaceChildren();b.style.setProperty('--cols',m.w);b.style.aspectRatio=m.w+'/'+m.h;
+    b.classList.toggle('sandbox-editable',Boolean(mission.sandbox&&!playing));
+    for(let y=0;y<m.h;y++)for(let x=0;x<m.w;x++){
+      const c=document.createElement(mission.sandbox?'button':'div');
+      if(mission.sandbox){
+        c.type='button';
+        const cellKind=x===state.x&&y===state.y?'Pip':x===m.goal.x&&y===m.goal.y?'Charging pad':E.occupied(m,x,y)?'Planter':'Open path';
+        c.setAttribute('aria-label','Row '+(y+1)+', Column '+(x+1)+': '+cellKind+'. Activate to edit tile.');
+        c.addEventListener('click',()=>handleSandboxTileClick(x,y));
+      }
+      c.className='cell';c.dataset.x=x;c.dataset.y=y;
+      if(E.occupied(m,x,y)){c.classList.add('wall');const plant=document.createElement('span');plant.className='plant';c.append(plant);}
+      if(state.visited.some(p=>p[0]===x&&p[1]===y))c.classList.add('visited');
+      if(x===m.goal.x&&y===m.goal.y){c.classList.add('goal');const pad=document.createElement('span');pad.className='pad';pad.textContent='ϟ';c.append(pad);}
+      if(state.scenario==='new-crate'&&state.moves>=2&&x===3&&y===2){c.classList.add('wall');c.textContent='▣';}
+      if(x===state.x&&y===state.y)c.append(robot());b.append(c);
+    }
+    b.setAttribute('aria-label','Garden '+m.w+' columns by '+m.h+' rows. Pip at row '+(state.y+1)+', column '+(state.x+1)+', facing '+E.DIRECTIONS[state.dir]+'. Pad at row '+(m.goal.y+1)+', column '+(m.goal.x+1)+'. Text map available below.');
+  }
+  function renderSafetyDrills(){
+    const wrap=$('stop-practice');if(!wrap)return;
+    wrap.replaceChildren();
+    if(mission.id!=='safety')return;
+    const lab=progress.lab||[];
+    const items=[
+      ['delivery','1. Normal delivery','normal'],
+      ['crate','2. Crate test','new-crate'],
+      ['sensor','3. Sensor fault test','sensor-fault'],
+      ['stop','4. Emergency stop','normal']
+    ];
+    items.forEach(([key,title,scen])=>{
+      const done=lab.includes(key);
+      const btn=document.createElement('button');
+      btn.type='button';
+      btn.className='drill-badge'+(done?' done':'');
+      btn.textContent=(done?'✓ ':'○ ')+title;
+      btn.setAttribute('aria-label',title+(done?' (completed)':' (click to select scenario)'));
+      btn.addEventListener('click',()=>{
+        if(key==='stop'){
+          notice('Drill 4: Press ▶ Run below, then quickly press the red ■ Emergency stop button while Pip is moving!');
+        } else {
+          scenario=scen;$('scenario').value=scen;fresh();
+          notice('Selected '+title+'. Press ▶ Run to test how Pip responds!');
+        }
+      });
+      wrap.append(btn);
+    });
+  }
+  function renderState(){
+    renderBoard();$('position').textContent='Row '+(state.y+1)+', column '+(state.x+1);$('direction').textContent=E.DIRECTIONS[state.dir][0].toUpperCase()+E.DIRECTIONS[state.dir].slice(1)+' '+['↑','→','↓','←'][state.dir];
+    const sense=E.sensor(state);$('sensor').textContent={clear:'○ Clear',blocked:'■ Blocked',unknown:'? Unknown'}[sense];
+    $('status').textContent=state.message;$('status').dataset.kind=state.status;$('tick-count').textContent=state.ticks+' / 160 steps';
+    document.querySelectorAll('.block-row').forEach(r=>r.classList.toggle('active',Number(r.dataset.index)===state.active));
+    $('trace').replaceChildren();state.trace.forEach(t=>{const row=document.createElement('li'),note=document.createElement('small');row.textContent=t.message;note.textContent='Step '+t.tick+' · Block '+t.block+' · Row '+(t.y+1)+', col '+(t.x+1)+' · Ahead: '+t.sensor;row.append(note);$('trace').append(row);});
+    $('run').disabled=playing||state.status==='estop';$('step').disabled=playing||state.status==='estop';$('run').textContent=playing?'Running…':(state.status==='running'?'▶ Continue':'▶ Run');
+    renderSafetyDrills();
+  }
+  function prepare(){
+    if(state.status==='estop'){notice('Press Reset to release Emergency stop.');return false;}
+    if(codeMode&&codeDirty&&!applyCode())return false;
+    if(!program.length){notice('Add a Forward block to begin.');return false;}
+    if(state.status==='ready'||!['running'].includes(state.status)){
+      try{state=E.create(map(),program,scenario);if(!(mission&&mission.id==='safety'&&(progress.lab||[]).length===4))$('reflection').hidden=true;notice('');}catch(e){notice(e.message);return false;}
+    }
+    return true;
+  }
+  function finish(){
+    playing=false;timer=null;renderState();
+    if(mission.id==='safety'){
+      const mark=state.status==='success'&&scenario==='normal'?'delivery':state.status==='sensor-fault'?'sensor':state.status==='blocked'&&scenario==='new-crate'&&state.moves===2?'crate':null;
+      if(mark){progress.lab=progress.lab||[];if(!progress.lab.includes(mark))progress.lab.push(mark);persist();renderState();}
+      if((progress.lab||[]).length<4){
+        const remaining=4-(progress.lab||[]).length;
+        if(mark)notice('✓ Drill recorded! '+remaining+' more safety drill'+(remaining>1?'s':'')+' left in the checklist to unlock the reflection.');
+        return;
+      }
+    }
+    if(state.status==='success'||(mission.id==='safety'&&(progress.lab||[]).length===4)){
+      if(!progress.completed.includes(mission.id))progress.completed.push(mission.id);
+      persist();renderNav();showReflection();
+    }
+  }
+  function oneStep(){E.step(state);renderState();if(!['ready','running'].includes(state.status))finish();}
+  function run(){
+    if(playing||!prepare())return;playing=true;const token=++epoch;renderState();
+    function tick(){if(token!==epoch||!playing)return;oneStep();if(playing)timer=setTimeout(tick,Number($('speed').value));}
+    timer=setTimeout(tick,0);
+  }
+  function emergency(){
+    const active=playing||state.status==='running';cancel();stopLatched=true;E.stop(state);if(active){progress.safety=true;if(mission.id==='safety'){progress.lab=progress.lab||[];if(!progress.lab.includes('stop'))progress.lab.push('stop');}persist();}renderState();notice('Emergency stop is latched. Press Reset when you are ready.');if(mission.id==='safety'&&(progress.lab||[]).length===4)finish();
+  }
+  function showReflection(){
+    $('reflection').hidden=false;$('concept').textContent=mission.concept;$('question').textContent=mission.question;$('answer-feedback').textContent=progress.checks.includes(mission.id)?'✓ Learning check completed. Try explaining it to a partner.':'';$('answers').replaceChildren();
+    mission.answers.forEach((answer,i)=>{const b=document.createElement('button');b.textContent=answer;b.addEventListener('click',()=>{
+      if(i===mission.correct){if(!progress.checks.includes(mission.id))progress.checks.push(mission.id);$('answer-feedback').textContent='✓ '+mission.explain;persist();renderNav();}
+      else $('answer-feedback').textContent='Try tracing it one step at a time. '+mission.explain;
+    });$('answers').append(b);});
+    $('next').textContent=M.indexOf(mission)===M.length-1?'Try another idea ↻':'Next mission →';
+  }
+  function applyCode(){
+    try{const next=E.fromCode($('source').value);if(state.status==='estop'){notice('Press Reset before changing the program.');return false;}edit(()=>{program=next;cursor=program.length;});notice('Code loaded. Predict the path, then Run.');return true;}catch(e){notice(e.message);return false;}
+  }
+  function showCode(show){
+    if(!show&&codeDirty){codeDirty=false;updateCodeViews();}
+    codeMode=show;$('blocks-view').hidden=show;$('code-view').hidden=!show;$('blocks-tab').setAttribute('aria-pressed',!show);$('code-tab').setAttribute('aria-pressed',show);
+    if(show&&!codeDirty)updateCodeViews();
+  }
+  function setSandboxTool(tool){
+    sandboxTool=tool;
+    [['wall','tool-wall'],['pip','tool-pip'],['pad','tool-pad']].forEach(([k,id])=>{const b=$(id);if(b)b.setAttribute('aria-pressed',k===tool?'true':'false');});
+  }
+  function download(filename,data,type='application/json'){
+    const blob=new Blob([data],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  }
+  function openDialog(id){cancel();if(state.status==='running'){state.message='Paused while this panel is open. Press Continue when ready.';renderState();}$(id).showModal();}
+  function textMap(){
+    const m=state.map;$('map-description').textContent='Pip is at row '+(state.y+1)+', column '+(state.x+1)+', facing '+E.DIRECTIONS[state.dir]+'. Forward moves in that direction. Turning changes direction without moving.';
+    const table=$('text-map');table.querySelectorAll('thead,tbody').forEach(x=>x.remove());const thead=document.createElement('thead'),tr=document.createElement('tr');
+    for(let x=0;x<=m.w;x++){const th=document.createElement('th');th.scope='col';th.textContent=x?'Col '+x:' ';tr.append(th);}thead.append(tr);table.append(thead);
+    const tbody=document.createElement('tbody');for(let y=0;y<m.h;y++){const tr=document.createElement('tr'),th=document.createElement('th');th.scope='row';th.textContent='Row '+(y+1);tr.append(th);for(let x=0;x<m.w;x++){const td=document.createElement('td');td.textContent=(x===state.x&&y===state.y?'Pip ': '')+(x===m.goal.x&&y===m.goal.y?'Pad':E.occupied(m,x,y)?'Planter':state.scenario==='new-crate'&&state.moves>=2&&x===3&&y===2?'Crate':'Path');tr.append(td);}tbody.append(tr);}table.append(tbody);openDialog('map-dialog');
+  }
+  async function offline(){
+    if(location.protocol==='file:'){$('offline-status').textContent='This downloaded copy runs offline. Keep this file on your device.';$('cache-offline').hidden=true;return;}
+    if(!('serviceWorker' in navigator)){$('offline-status').textContent='Offline installation is unavailable here. Use the self-contained HTML download.';$('cache-offline').hidden=true;return;}
+    $('offline-status').textContent='Saving app files for offline use…';
+    try{
+      const reg=await navigator.serviceWorker.register('sw.js');await navigator.serviceWorker.ready;
+      const worker=reg.active||navigator.serviceWorker.controller;
+      const ok=await new Promise(resolve=>{const ch=new MessageChannel();const timeout=setTimeout(()=>resolve(false),5000);ch.port1.onmessage=e=>{clearTimeout(timeout);resolve(e.data&&e.data.ready===true);};worker.postMessage({type:'CACHE_READY'},[ch.port2]);});
+      $('offline-status').textContent=ok?'Offline files are ready. Test once with Wi-Fi off before the workshop. You can also use your browser’s Install or Add to Home Screen menu.':'Offline cache is not verified yet. Keep the downloaded HTML as your backup.';
+    }catch(e){$('offline-status').textContent='Could not prepare offline storage. Use the self-contained HTML download; this browser may restrict installation.';}
+  }
+  $('run').addEventListener('click',run);$('step').addEventListener('click',()=>{if(!playing&&prepare())oneStep();});
+  $('reset').addEventListener('click',()=>{stopLatched=false;fresh();notice('Robot reset. Your program is still here.');});$('estop').addEventListener('click',emergency);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){emergency();}});
+  document.addEventListener('visibilitychange',()=>{if(document.hidden&&playing){cancel();state.message='Paused when you left the page. Press Continue to resume.';renderState();}});
+  $('undo').addEventListener('click',()=>{if(!undo.length)return;if(state.status==='estop'){notice('Press Reset first.');return;}cancel();program=JSON.parse(undo.pop());cursor=program.length;codeDirty=false;fresh();renderProgram();persist();});
+  $('clear').addEventListener('click',()=>edit(()=>{program=[];cursor=0;}));$('starter').addEventListener('click',()=>edit(()=>{program=JSON.parse(JSON.stringify(mission.starter));cursor=program.length;}));
+  $('hint').addEventListener('click',()=>{$('hint-text').hidden=!$('hint-text').hidden;$('hint-text').textContent=mission.hint;});
+  $('next').addEventListener('click',()=>{const i=M.indexOf(mission);if(i<M.length-1)switchMission(M[i+1].id);else{fresh();notice(mission.challenge);} $('workspace').scrollIntoView({behavior:'auto',block:'start'});});
+  $('variant').addEventListener('change',()=>{variant=Number($('variant').value);fresh();notice('New route, same program. Predict what will happen.');});
+  $('scenario').addEventListener('change',()=>{scenario=$('scenario').value;fresh();notice('Test condition changed. Your program is unchanged.');});
+  $('blocks-tab').addEventListener('click',()=>showCode(false));$('code-tab').addEventListener('click',()=>showCode(true));$('apply-code').addEventListener('click',applyCode);
+  $('source').addEventListener('input',()=>{codeDirty=true;cancel();if(state.status==='running'){state.status='edited';state.message='Code changed. Run starts the edited program from the beginning.';renderState();}});
+  $('peek-js')?.addEventListener('click',()=>{peekLang='js';$('peek-js').setAttribute('aria-pressed','true');$('peek-py').setAttribute('aria-pressed','false');updateCodeViews();});
+  $('peek-py')?.addEventListener('click',()=>{peekLang='python';$('peek-js').setAttribute('aria-pressed','false');$('peek-py').setAttribute('aria-pressed','true');updateCodeViews();});
+  [['wall','tool-wall'],['pip','tool-pip'],['pad','tool-pad']].forEach(([k,id])=>$(id)?.addEventListener('click',()=>setSandboxTool(k)));
+  $('rotate-pip')?.addEventListener('click',()=>{
+    if(!mission.sandbox||playing)return;
+    if(state.status==='estop'){notice('Press Reset first.');return;}
+    const current=JSON.parse(JSON.stringify(map()));
+    current.start.dir=(current.start.dir+1)%4;
+    progress.sandboxMap=current;fresh();persist();$('board').querySelector(`.cell[data-x='${current.start.x}'][data-y='${current.start.y}']`)?.focus();
+    notice('Rotated Pip to face '+E.DIRECTIONS[current.start.dir]+'.');
+  });
+  $('sandbox-preset')?.addEventListener('change',()=>{
+    if(!mission.sandbox||playing)return;
+    if(state.status==='estop'){notice('Press Reset first.');return;}
+    const idx=Number($('sandbox-preset').value)||0;
+    const preset=mission.presets&&mission.presets[idx]?mission.presets[idx]:{name:'Zigzag course',map:mission.map};
+    progress.sandboxMap=JSON.parse(JSON.stringify(preset.map));fresh();persist();
+    notice('Loaded sandbox preset: '+preset.name+'.');
+  });
+  $('reset-map')?.addEventListener('click',()=>{
+    if(!mission.sandbox||playing)return;
+    if(state.status==='estop'){notice('Press Reset first.');return;}
+    const idx=$('sandbox-preset')?Number($('sandbox-preset').value)||0:0;
+    const preset=mission.presets&&mission.presets[idx]?mission.presets[idx]:{name:'Zigzag course',map:mission.map};
+    progress.sandboxMap=JSON.parse(JSON.stringify(preset.map));fresh();persist();
+    notice('Reset sandbox map to '+preset.name+'.');
+  });
+  $('print-guide')?.addEventListener('click',()=>window.print());
+  $('trace-export').addEventListener('click',()=>download('pip-trace.json',JSON.stringify({format:'openline-academy-trace-v1',mission:mission.id,variant,scenario,map:state.map,program:state.tokens,status:state.status,trace:state.trace},null,2)));
+  $('guide-open').addEventListener('click',()=>openDialog('guide-dialog'));$('settings-open').addEventListener('click',()=>{updateSaveStatus();openDialog('settings-dialog');});$('map-open').addEventListener('click',textMap);
+  document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>b.closest('dialog').close()));
+  $('export-progress').addEventListener('click',()=>{persist();download('pip-progress.json',JSON.stringify(progress,null,2));});
+  $('import-progress').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>100000)throw Error('Choose a progress file smaller than 100 KB.');const loaded=E.cleanProgress(JSON.parse(await file.text()),M.map(m=>m.id));cancel();mission=null;progress=loaded;switchMission(loaded.mission);$('import-status').textContent='Progress loaded. Pip is parked and ready.';}catch(err){$('import-status').textContent='Could not load: '+err.message;}e.target.value='';});
+  $('erase-progress').addEventListener('click',()=>{cancel();progress={version:1,mission:M[0].id,drafts:{},completed:[],checks:[],safety:false,lab:[],sandboxMap:null};try{localStorage.removeItem(KEY);}catch(e){}mission=null;switchMission(M[0].id);$('settings-dialog').close();notice('Local progress cleared. A fresh start.');});
+  $('cache-offline').addEventListener('click',offline);
+  window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;$('install').hidden=false;});$('install').addEventListener('click',async()=>{if(installPrompt){await installPrompt.prompt();installPrompt=null;$('install').hidden=true;}});
+  switchMission(progress.mission);if(startupMessage)notice(startupMessage);$('offline-status').textContent='This downloaded copy runs offline. Keep this file on your device.';$('cache-offline').hidden=true;
+})();
+
+</script>
+</body></html>
